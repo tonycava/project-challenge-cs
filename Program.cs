@@ -1,13 +1,14 @@
 using Game.Engine;
 
-namespace Project_CS
+public class Project : Board
 {
-  public class Program : Board
+  public static void Main()
   {
-    
-    public static void Main()
-    {
-     DisplayGame();
-    }
+    // int[] cordOfChar = new[] {0, 0};
+    // DisplayGame(array2Db, cordOfChar);
+    // GameLoop.Update(cordOfChar);
+    CreateCharacter.SetupCharacter();
   }
 }
+
+

@@ -1,12 +1,13 @@
 ﻿namespace Game.Engine
 {
-    public class CreateCharacter
+    public class Entity
     {
-        public static void SetupCharacter()
+        
+        public static void SetupHero()
         {
             Hero newHero = new Hero();
 
-            Console.WriteLine("Now choose your character's class");
+            Console.WriteLine("Now choose your hero's class");
             Console.WriteLine("Warrior......1");
             Console.WriteLine("Mage........2");
             Console.WriteLine("Rogue........3");
