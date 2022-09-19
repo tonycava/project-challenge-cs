@@ -1,14 +1,11 @@
-﻿using Project_CS.System;
-using System;
+﻿using Game.Engine;
 
-namespace TestOfCharacter
+public class Project : Board
 {
-    class Program
-    {
-        static void Main()
-        {
-            CreateCharacter.SetupCharacter();
-        }
-    }
+  public static void Main()
+  {
+    int[] cordOfChar = new[] {0, 0};
+    DisplayGame(array2Db, cordOfChar);
+    GameLoop.Update(cordOfChar);
+  }
 }
-
