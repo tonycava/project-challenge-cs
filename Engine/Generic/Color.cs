@@ -10,12 +10,6 @@
         {
             get { return new Color(0, 255, 0); }
         }
-
-        public static Color GRAY
-        {
-            get { return new Color(128, 128, 128); }
-        }
-
         public static Color BLUE
         {
             get { return new Color(0, 0, 255); }
