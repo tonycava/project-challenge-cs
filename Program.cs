@@ -7,7 +7,7 @@ public class Project : Board
     // int[] cordOfChar = new[] {0, 0};
     // DisplayGame(array2Db, cordOfChar);
     // GameLoop.Update(cordOfChar);
-    CreateCharacter.SetupCharacter();
+    Entity.SetupHero();
   }
 }
 
