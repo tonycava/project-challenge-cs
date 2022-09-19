@@ -1,36 +1,37 @@
-﻿using Project_CS.Data;
+﻿using Game.Engine;
+using Project_CS.Data;
 
 namespace Project_CS
 {
 
   public static class Extensions
   {
-    public static Color getColor(this Konsole.CharacterAttributes characterAttributes)
+    public static Color getColor(this Board.CharacterAttributes characterAttributes)
     {
       switch (characterAttributes)
       {
-        case Konsole.CharacterAttributes.BACKGROUND_RED:
+        case Board.CharacterAttributes.BACKGROUND_RED:
           return Color.RED;
-        case Konsole.CharacterAttributes.BACKGROUND_BLUE:
+        case Board.CharacterAttributes.BACKGROUND_BLUE:
           return Color.BLUE;
-        case Konsole.CharacterAttributes.BACKGROUND_GREEN:
+        case Board.CharacterAttributes.BACKGROUND_GREEN:
           return Color.GREEN;
-        case Konsole.CharacterAttributes.BACKGROUND_INTENSITY:
+        case Board.CharacterAttributes.BACKGROUND_INTENSITY:
           return Color.WHITE;
       }
       return Color.WHITE;
     }
 
-    public static Konsole.CharacterAttributes getCharacterAttributes(this Color color)
+    public static Board.CharacterAttributes getCharacterAttributes(this Color color)
     {
       List<Color> colors = new List<Color>();
-      foreach (Konsole.CharacterAttributes characterAttributes in Enum.GetValues<Konsole.CharacterAttributes>())
+      foreach (Board.CharacterAttributes characterAttributes in Enum.GetValues<Board.CharacterAttributes>())
       {
         colors.Add(characterAttributes.getColor());
       }
 
       Color nearestColor = GetClosestColor(colors.ToArray(), color);
-      foreach (Konsole.CharacterAttributes characterAttributes in Enum.GetValues<Konsole.CharacterAttributes>())
+      foreach (Board.CharacterAttributes characterAttributes in Enum.GetValues<Board.CharacterAttributes>())
       {
         if (nearestColor == characterAttributes.getColor())
         {
@@ -38,7 +39,7 @@ namespace Project_CS
         }
       }
 
-      return Konsole.CharacterAttributes.BACKGROUND_INTENSITY;
+      return Board.CharacterAttributes.BACKGROUND_INTENSITY;
     }
 
     private static Color GetClosestColor(Color[] colorArray, Color baseColor)
