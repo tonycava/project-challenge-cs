@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Project_CS;
 using CLIpixelEngine.Engine.Generic;
@@ -15,6 +16,7 @@ namespace Game.Engine
       FOREGROUND_GREEN = 0x0002,
       FOREGROUND_RED = 0x0004,
       FOREGROUND_INTENSITY = 0x0008,
+      BACKGROUND_BLACK = 0x0000,
       BACKGROUND_BLUE = 0x0010,
       BACKGROUND_GREEN = 0x0020,
       BACKGROUND_RED = 0x0040,
@@ -52,9 +54,9 @@ namespace Game.Engine
       {
         for (int y = 0; y < imageLevel.Height; y++)
         {
-          byte r = imageLevel.GetPixel(x, y).R;
-          byte g = imageLevel.GetPixel(x, y).G;
-          byte b = imageLevel.GetPixel(x, y).B;
+          byte r = imageLevel.GetPixel(y, x).R;
+          byte g = imageLevel.GetPixel(y, x).G;
+          byte b = imageLevel.GetPixel(y, x).B;
 
           CharacterAttributes nearest = new Color(r, g, b).getCharacterAttributes();
 
@@ -63,8 +65,7 @@ namespace Game.Engine
 
           Write("  ", nearest);
         }
-
-        Console.WriteLine("\t");
+        Console.Write("\n");
       }
 
       static void Write(string str, CharacterAttributes wAttributes)
@@ -74,4 +75,4 @@ namespace Game.Engine
       }
     }
   }
-};
+}
