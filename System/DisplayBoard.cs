@@ -2,8 +2,8 @@
 using System;
 using System.Runtime.InteropServices;
 using Project_CS;
-using Project_CS.Data;
-using Color = Project_CS.Data.Color;
+using CLIpixelEngine.Engine.Generic;
+using Color = CLIpixelEngine.Engine.Generic.Color;
 
 namespace Game.Engine
 {
@@ -37,14 +37,14 @@ namespace Game.Engine
     [DllImport("kernel32.dll")]
     private static extern IntPtr GetStdHandle(int nStdHandle);
 
-    protected static void DisplayGame()
+    public static void DisplayGame()
     {
-      if (_isFirstTime)
-      {
-        Console.Write("Enter username: ");
-        _Username = Console.ReadLine();
-        _isFirstTime = false;
-      }
+      // if (_isFirstTime)
+      // {
+      //   Console.Write("Enter username: ");
+      //   _Username = Console.ReadLine();
+      //   _isFirstTime = false;
+      // }
 
       Bitmap imageLevel = new Bitmap("./Assets/map.png");
 

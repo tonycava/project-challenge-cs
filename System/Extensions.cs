@@ -1,7 +1,9 @@
-﻿using Game.Engine;
-using Project_CS.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Game.Engine;
 
-namespace Project_CS
+namespace CLIpixelEngine.Engine.Generic
 {
 
   public static class Extensions

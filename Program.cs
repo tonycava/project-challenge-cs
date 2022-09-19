@@ -1,14 +1,13 @@
 using Game.Engine;
+using CLIpixelEngine.Engine.Generic;
 
-public class Project : Board
+namespace Project_CS
 {
-  public static void Main()
-  {
-    // int[] cordOfChar = new[] {0, 0};
-    // DisplayGame(array2Db, cordOfChar);
-    // GameLoop.Update(cordOfChar);
-    Entity.SetupHero();
-  }
+    public class Program 
+    {
+        public static void Main()
+        {
+            Board.DisplayGame();
+        }
+    }
 }
-
-
