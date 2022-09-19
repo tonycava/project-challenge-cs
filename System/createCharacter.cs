@@ -1,4 +1,4 @@
-﻿namespace Project_CS.System
+﻿namespace Game.Engine
 {
     public class CreateCharacter
     {
