@@ -1,6 +1,6 @@
 using CLIpixelEngine.Engine.Generic;
 
-namespace CLIpixelEngine.Game.Generic
+namespace Game.EntityHandler
 {
     public interface IEntity
     {

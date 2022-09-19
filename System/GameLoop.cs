@@ -1,4 +1,6 @@
-﻿namespace Game.Engine
+﻿using System;
+
+namespace Game.Engine
 {
   public class GameLoop : Board
   {

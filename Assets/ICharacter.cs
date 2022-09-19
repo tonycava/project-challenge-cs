@@ -1,7 +1,4 @@
-using System.Dynamic;
-using CLIpixelEngine.Game.Generic;
-
-namespace Project_CS.Assets
+namespace Game.EntityHandler
 {
     public interface ICharacter : IEntity
     {

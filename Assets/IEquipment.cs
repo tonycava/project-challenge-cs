@@ -1,4 +1,4 @@
-namespace Project_CS.Assets
+namespace Game.EntityHandler
 {
     public interface IEquipment
     {
