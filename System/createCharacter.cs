@@ -44,20 +44,36 @@
             Hero.ClassSelect(newHero);
         }
     }
-    class Character
+
+    interface ICharacter
     {
-        protected int CharacterMaxHealth;
-        protected int CharacterStrength;
-        protected int CharacterIntelligence;
-        protected int CharacterAgility;
-        protected int CharacterStamina;
+        int CharacterMaxHealth { get; set; }
+        int CharacterStrength { get; set; }
+        int CharacterIntelligence { get; set; }
+        int CharacterAgility { get; set; }
+        int CharacterStamina { get; set; }
     }
 
-    class Hero : Character
+    class Hero : ICharacter
     {
         public string HeroName;
         public string HeroClass;
         private int Level, Experience, Gold;
+
+        public void Character(int characterMaxHealth, int characterStrength, int characterIntelligence, int characterAgility, int characterStamina )
+        {
+            CharacterMaxHealth = characterMaxHealth;
+            CharacterStrength = characterStrength;
+            CharacterIntelligence = characterIntelligence;
+            CharacterAgility = characterAgility;
+            CharacterStamina = characterStamina;
+        }
+        
+        public int CharacterMaxHealth { get; set; }
+        public int CharacterStrength { get; set; }
+        public int CharacterIntelligence { get; set; }
+        public int CharacterAgility { get; set; }
+        public int CharacterStamina { get; set; }
 
         public static void ClassSelect(Hero newHero)
         {
