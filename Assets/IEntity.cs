@@ -2,8 +2,8 @@ using CLIpixelEngine.Engine.Generic;
 
 namespace CLIpixelEngine.Game.Generic
 {
-    public class IEntity
+    public interface IEntity
     {
-        private Vector2 position { get; set; }
+        public Vector2 position { get; set; }
     }
 }

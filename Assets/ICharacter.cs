@@ -3,9 +3,9 @@ using CLIpixelEngine.Game.Generic;
 
 namespace Project_CS.Assets
 {
-    public class ICharacter : IEntity
+    public interface ICharacter : IEntity
     {
-        private int hp { get; set; }
-        private int stamina { get; set; }
+        public int hp { get; set; }
+        public int stamina { get; set; }
     }
 }

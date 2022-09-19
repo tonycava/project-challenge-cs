@@ -1,23 +1,22 @@
 namespace Project_CS.Assets
 {
-    public class IEquipment
+    public interface IEquipment
     {
-        private uint head { get; set; }
-        private uint uBody { get; set; }
-        private uint leg { get; set; }
-        private uint feet { get; set; }
+        public uint head { get; set; }
+        public uint uBody { get; set; }
+        public uint leg { get; set; }
+        public uint feet { get; set; }
         
-        private uint Rhand { get; set; }
-        private uint Lhand { get; set; }
-
-        private uint ring1 { get; set; }
-        private uint ring2 { get; set; }
+        public uint hand { get; set; }
         
-        private uint E1 { get; set; }
-        private uint E2 { get; set; }
-        private uint E3 { get; set; }
-        private uint E4 { get; set; }
-        private uint E5 { get; set; }
-        private uint E6 { get; set; }
+        public uint ring1 { get; set; }
+        public uint ring2 { get; set; }
+        
+        public uint E1 { get; set; }
+        public uint E2 { get; set; }
+        public uint E3 { get; set; }
+        public uint E4 { get; set; }
+        public uint E5 { get; set; }
+        public uint E6 { get; set; }
     }
 }
