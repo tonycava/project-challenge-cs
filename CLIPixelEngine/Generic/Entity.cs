@@ -14,5 +14,12 @@ namespace CLIPixelEngine.Engine.Generic
             sprite = new Bitmap("./Assets/Sprites/debugSprite.png");
             script = null;
         }
+
+        public Entity(Vector2 position,string name,Scripts script)
+        {
+            this.position = new Vector2(0, 0);
+            this.sprite = new Bitmap("./Assets/Sprites/" + name);
+            this.script = null;
+        }
     }
 }

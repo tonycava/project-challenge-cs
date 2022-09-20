@@ -9,7 +9,7 @@ namespace CLIPixelEngine.Engine
             Message startMapMessage = new Message(
                 ActionType.INPUT, 
                 Actions.CHANGE_MAP, 
-                "./Assets/Maps/DebugMAP.png");
+                "./Assets/Maps/DebugMap/DebugMap.png");
             
             Engine.bus.Mqueue.Enqueue(startMapMessage);
             

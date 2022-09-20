@@ -20,8 +20,7 @@ namespace CLIPixelEngine.Engine {
 
 		[DllImport("kernel32.dll", SetLastError = true)]
 		public static extern IntPtr GetStdHandle(int handle);
-		
-		
+
 		private static void SetupConsole()
 		{
 			handle = GetStdHandle(-11);
@@ -30,19 +29,15 @@ namespace CLIPixelEngine.Engine {
 			SetConsoleMode(handle, mode | 0x4);
 		}
 
-		static Bitmap GetMap()
-		{
-	    	//TODO: return selected map
-			return new Bitmap("./Assets/map.png");
-		}
-
+		public static string currentMap = "";
+		public static Bitmap Map;
 		public static void Draw()
 		{
-			//TODO: GET MAP
-			Bitmap Map = GetMap();
-
+			//setup Draw
+			SetMap();
 			if(handle == IntPtr.Zero)SetupConsole();
-
+			
+			//TODO: print only part of the map (where the "camera" is)
 			for (int x = 0; x < Map.Width;	 x++)
 			{
 				for (int y = 0; y < Map.Height; y++)
@@ -59,8 +54,13 @@ namespace CLIPixelEngine.Engine {
 			}
 		}
 
-		public void SetMap(string path)
+		public static void SetMap(string path = "./Assets/Maps/BigDebugMap/BigDebugMap.png")
 		{
+			if (currentMap != path)
+			{
+				currentMap = path;
+				Map = new Bitmap(path);
+			}
 			
 		}
 	}
