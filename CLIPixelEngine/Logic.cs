@@ -1,10 +1,10 @@
-namespace Project_CS.CLIPixelEngine
+namespace CLIPixelEngine.Engine
 {
     public class Logic
     {
         public static void Update()
         {
-            
+            //TODO: Logic handling
         }
     }
 }

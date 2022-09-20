@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="Assets\Maps\DebugMAP.png">
+    <AdditionalFiles Include="Assets\Maps\DebugMAP\DebugMAP.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
   </ItemGroup>

@@ -6,12 +6,13 @@ namespace CLIPixelEngine.Engine.Generic
     {
         public Vector2 position;
         public Bitmap sprite;
-        public Scipts script;
+        public Scripts script;
 
         public Entity()
         {
             position = new Vector2(0, 0);
-            sprite = new Bitmap()
+            sprite = new Bitmap("./Assets/Sprites/debugSprite.png");
+            script = null;
         }
     }
 }

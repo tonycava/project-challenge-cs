@@ -1,6 +1,6 @@
 namespace CLIPixelEngine.Engine.Generic
 {
-    public class Scipts
+    public class Scripts
     {
         
     }

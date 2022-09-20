@@ -1,5 +1,4 @@
 using CLIPixelEngine.Engine.Bus;
-using Project_CS.CLIPixelEngine;
 
 namespace CLIPixelEngine.Engine
 {
@@ -16,7 +15,7 @@ namespace CLIPixelEngine.Engine
             
         }
 
-        public static void Update()
+        public void Update()
         {
             bool running = true;
             while (running)

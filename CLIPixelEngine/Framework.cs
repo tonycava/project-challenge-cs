@@ -1,6 +1,6 @@
 using CLIPixelEngine.Engine.Bus;
 
-namespace CLIPixelEngine.Engine.FrameWork
+namespace CLIPixelEngine.Engine
 {
     
     public class Linker

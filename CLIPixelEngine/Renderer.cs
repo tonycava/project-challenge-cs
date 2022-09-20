@@ -7,7 +7,7 @@ using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 using Color = CLIPixelEngine.Engine.Generic.Color;
 
-namespace CLIPixelEngine.Engine.Render {
+namespace CLIPixelEngine.Engine {
 	public class Renderer {
 
 		public static IntPtr handle;
@@ -57,6 +57,11 @@ namespace CLIPixelEngine.Engine.Render {
 				Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
 				Console.Write("\n");
 			}
+		}
+
+		public void SetMap(string path)
+		{
+			
 		}
 	}
 }
