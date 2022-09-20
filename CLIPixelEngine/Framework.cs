@@ -26,7 +26,7 @@ namespace CLIPixelEngine.Engine.FrameWork
         //TODO: add the different Class exemple Input* input;
         public async void HandleMessage()
         {
-            MessageBus.Message message = Engine.bus.Mqueue.Dequeue();
+            Message message = Engine.bus.Mqueue.Dequeue();
             switch (message.type)
             {
                 case ActionType.INPUT:
@@ -35,6 +35,7 @@ namespace CLIPixelEngine.Engine.FrameWork
                 case ActionType.RENDER:
                     Linker.RenderHandler(message.action,message.value);
                     break;
+                
             }
         }
     }

@@ -32,12 +32,19 @@ namespace CLIPixelEngine.Engine.Bus
         //TODO: Fill with enum
         
         public Queue<Message> Mqueue;
-        
-        public struct Message
+    }
+    
+    public class Message
+    {
+        public ActionType type;
+        public Actions action;
+        public string value;
+
+        public Message(ActionType t,Actions a,string v)
         {
-            public ActionType type;
-            public Actions action;
-            public string value;
+            this.type = t;
+            this.action = a;
+            this.value = v;
         }
     }
 }

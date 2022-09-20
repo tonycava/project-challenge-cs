@@ -18,7 +18,10 @@
 
   <ItemGroup>
     <None Remove="Assets\map.png" />
-    <AdditionalFiles Include="Assets\map.png">
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Assets\Maps\DebugMAP.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
   </ItemGroup>
