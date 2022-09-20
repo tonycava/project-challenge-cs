@@ -1,4 +1,4 @@
-using Game.Engine;
+using CLIpixelEngine.Engine.Render;
 using CLIpixelEngine.Engine.Generic;
 
 namespace Project_CS
@@ -7,7 +7,7 @@ namespace Project_CS
     {
         public static void Main()
         {
-            Board.DisplayGame();
+            Renderer.Draw();
         }
     }
 }
