@@ -1,4 +1,4 @@
-namespace CLIpixelEngine.Engine.Generic {
+namespace CLIPixelEngine.Engine.Generic {
     public class Vector2Int {
         public int x {get;set;}
         public int y {get;set;}

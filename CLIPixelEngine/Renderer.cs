@@ -1,12 +1,13 @@
 using System.Drawing;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using CLIpixelEngine.Engine.Bus;
-using CLIpixelEngine.Engine.Generic;
-using Color = CLIpixelEngine.Engine.Generic.Color;
+using CLIPixelEngine.Engine.Bus;
+using CLIPixelEngine.Engine.Generic;
+using Color = CLIPixelEngine.Engine.Generic.Color;
 
-namespace CLIpixelEngine.Engine.Render {
+namespace CLIPixelEngine.Engine.Render {
 	public class Renderer {
 
 		public static IntPtr handle;
@@ -19,7 +20,8 @@ namespace CLIpixelEngine.Engine.Render {
 
 		[DllImport("kernel32.dll", SetLastError = true)]
 		public static extern IntPtr GetStdHandle(int handle);
-
+		
+		
 		private static void SetupConsole()
 		{
 			handle = GetStdHandle(-11);

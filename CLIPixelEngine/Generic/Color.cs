@@ -1,4 +1,4 @@
-﻿namespace CLIpixelEngine.Engine.Generic {
+﻿namespace CLIPixelEngine.Engine.Generic {
     public struct Color
     {
         public static Color RED
