@@ -1,5 +1,4 @@
 using CLIPixelEngine.Engine;
-using CLIPixelEngine.Engine.Generic;
 
 namespace Project_CS
 {
@@ -7,7 +6,7 @@ namespace Project_CS
     {
         public static void Main()
         {
-            Renderer.Draw();
+            CLIPixelEngine.Engine.Engine.StartEngine();
         }
     }
 }

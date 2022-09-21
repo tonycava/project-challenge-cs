@@ -6,22 +6,16 @@ namespace CLIPixelEngine.Engine
     {
         public void Start()
         {
-            Message startMapMessage = new Message(
-                ActionType.INPUT, 
-                Actions.CHANGE_MAP, 
-                "./Assets/Maps/DebugMap/DebugMap.png");
-            
-            Engine.bus.Mqueue.Enqueue(startMapMessage);
-            
+            // Message startMapMessage = new Message(
+            //     ActionType.INPUT, 
+            //     Actions.CHANGE_MAP, 
+            //     "./Assets/Maps/DebugMap/DebugMap.png");
+            // Engine.bus.Mqueue.Enqueue(startMapMessage);
         }
 
         public void Update()
         {
-            bool running = true;
-            while (running)
-            {
-                Logic.Update();
-            }
+            Engine.logicEngine.Update();
         }
     }
 }
