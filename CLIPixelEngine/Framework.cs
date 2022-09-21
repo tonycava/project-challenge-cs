@@ -27,13 +27,13 @@ namespace CLIPixelEngine.Engine
         public async void HandleMessage()
         {
             Message message = Engine.bus.Mqueue.Dequeue();
-            switch (message.type)
+            switch (message.Type)
             {
                 case ActionType.INPUT:
-                    Linker.InputHandler(message.action,message.value);
+                    Linker.InputHandler(message.Action,message.Value);
                     break;
                 case ActionType.RENDER:
-                    Linker.RenderHandler(message.action,message.value);
+                    Linker.RenderHandler(message.Action,message.Value);
                     break;
                 
             }

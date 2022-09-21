@@ -29,6 +29,39 @@ namespace CLIPixelEngine.Engine {
 			SetConsoleMode(handle, mode | 0x4);
 		}
 
+    static Bitmap GetMap(string pathToMap)
+    {
+      return new Bitmap(pathToMap);
+    }
+
+    public static void Draw()
+    {
+      const int fov = 10;
+      Vector2Int camera = Camera.cordOfCharacter;
+      Vector2Int sizeOfMap = DebugMap.sizeOfMap;
+
+
+      Bitmap Map = GetMap("./Assets/Maps/DebugMAP/DebugMAP.png");
+      if (handle == IntPtr.Zero) SetupConsole();
+
+
+      int StartAtX = camera.x - fov < 0 ? 0 : camera.x - fov;
+      
+      int EndAtX = camera.x + fov > sizeOfMap.x ? sizeOfMap.x : camera.x + fov;      
+      
+      
+      int StartAtY = camera.y - fov < 0 ? 0 : camera.y - fov;
+      
+      int EndAtY = camera.y + fov > sizeOfMap.y ? sizeOfMap.y : camera.y + fov;
+
+      
+      for (int x = StartAtX; x < EndAtX; x++)
+      {
+        for (int y = StartAtY; y < EndAtY; y++)
+        {
+          byte r = Map.GetPixel(y, x).R;
+          byte g = Map.GetPixel(y, x).G;
+          byte b = Map.GetPixel(y, x).B;
 		public static string currentMap = "";
 		public static Bitmap Map;
 		public static void Draw()
@@ -46,13 +79,18 @@ namespace CLIPixelEngine.Engine {
 					byte g = Map.GetPixel(y, x).G;
 					byte b = Map.GetPixel(y, x).B;
 
-					Console.Write("\x1b[48;2;" + r + ";" + g + ";" + b + "m  ");
-				}
+          
+          
+          Console.Write("\x1b[48;2;" + r + ";" + g + ";" + b + "m  ");
+        }
 
-				Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
-				Console.Write("\n");
-			}
-		}
+        Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
+        Console.Write("\n");
+      }
+
+      ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
+      ConsoleHelper.SetCurrentFont("Consolas", 10);
+    }
 
 		public static void SetMap(string path = "./Assets/Maps/BigDebugMap/BigDebugMap.png")
 		{
