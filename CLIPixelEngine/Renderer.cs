@@ -1,5 +1,6 @@
 using System.Drawing;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -62,7 +63,7 @@ namespace CLIPixelEngine.Engine
       int StartAtY = _camera.Position.y - _camera.Fov < 0 ? 0 : _camera.Position.y - _camera.Fov;
       int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
 
-      
+      DrawSprite(Map);
 
       for (int x = StartAtX; x < EndAtX; x++)
       {

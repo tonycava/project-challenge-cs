@@ -21,9 +21,9 @@ namespace CLIPixelEngine.Engine
             renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
             renderer.SetupCamera(camera);
             renderer.PutCameraAt(new Vector2Int(64, 64));
+            entities.Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png", null));
             clock.Start();
             clock.Update();
-            
         }
         
     }
