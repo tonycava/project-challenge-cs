@@ -17,9 +17,8 @@ namespace CLIPixelEngine.Engine
         public static MessageReceiver messageReceiver = new MessageReceiver();
         public static void StartEngine()
         {
-            camera.Fov = 35;
+            camera.Fov = new Vector2Int(16,9);
             renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
-            renderer.SetupCamera(camera);
             renderer.PutCameraAt(new Vector2Int(64, 64));
             entities.Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png", null));
             

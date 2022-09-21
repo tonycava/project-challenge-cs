@@ -2,8 +2,10 @@ using System.Drawing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 using Game.Maps;
@@ -35,20 +37,14 @@ namespace CLIPixelEngine.Engine
     {
       return new Bitmap(pathToMap);
     }
-
-    private Camera _camera;
+    
     private Map _map;
-
-    public void SetupCamera(Camera camera)
-    {
-      _camera = camera;
-    }
-
+    
     public void PutCameraAt(Vector2Int position)
     {
-      _camera.Position = position;
+      Engine.camera.Position = position;
     }
-
+    
     public Task Draw()
     {
       Console.Clear();
@@ -60,12 +56,23 @@ namespace CLIPixelEngine.Engine
       if (handle == IntPtr.Zero) SetupConsole();
 
       
-      int StartAtX = _camera.Position.x - _camera.Fov < 0 ? 0 : _camera.Position.x - _camera.Fov;
-      int EndAtX = _camera.Position.x + _camera.Fov > _map.Size.x ? _map.Size.x : _camera.Position.x + _camera.Fov;
+      int StartAtX = Engine.camera.Position.x - Engine.camera.Fov.x < 0 ?
+        0 : Engine.camera.Position.x - Engine.camera.Fov.x;
+      int EndAtX = Engine.camera.Position.x + Engine.camera.Fov.x > _map.Size.x ?
+        _map.Size.x : Engine.camera.Position.x + Engine.camera.Fov.x;
 
-      int StartAtY = _camera.Position.y - _camera.Fov < 0 ? 0 : _camera.Position.y - _camera.Fov;
-      int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
+      int StartAtY = Engine.camera.Position.y - Engine.camera.Fov.y < 0 ?
+        0 : Engine.camera.Position.y - Engine.camera.Fov.y;
+      int EndAtY = Engine.camera.Position.y + Engine.camera.Fov.y > _map.Size.y ?
+        _map.Size.y : Engine.camera.Position.y + Engine.camera.Fov.y;
 
+      StartAtX = StartAtX + Engine.camera.Fov.x * 2 < _map.Size.x ? StartAtX : _map.Size.x - Engine.camera.Fov.x * 2;
+      EndAtX = EndAtX > _map.Size.x ? _map.Size.x : EndAtX;
+      
+      StartAtY = StartAtY + Engine.camera.Fov.y * 2 < _map.Size.y ? StartAtY : _map.Size.y - Engine.camera.Fov.y * 2;
+      EndAtX = EndAtY > _map.Size.y ? _map.Size.y : EndAtY;
+      
+      
       DrawEntities(Map);
       
       for (int x = StartAtX; x < EndAtX; x++)

@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 
@@ -32,12 +34,15 @@ namespace CLIPixelEngine.Engine
           break;
         case "right arrow":
           Console.WriteLine("right arrow pressed");
+          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "right");
           break;
         case "down arrow":
           Console.WriteLine("down arrow pressed");
+          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "down");
           break;
         case "left arrow":
           Console.WriteLine("left arrow pressed");
+          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "left");
           break;
       }
     }
@@ -64,9 +69,18 @@ namespace CLIPixelEngine.Engine
       switch (value)
       {
         case "up":
-          Engine.entities.ElementAt(0).Position.y += 1;
-          Engine.camera.Position = Engine.entities.ElementAt(0).Position;
+          Engine.entities.ElementAt(0).Position.y -= 1;
           break;
+        case "right":
+          Engine.entities.ElementAt(0).Position.x -= 1;
+          break;
+        case "down":
+          Engine.entities.ElementAt(0).Position.y += 1;
+          break;
+        case "left":
+          Engine.entities.ElementAt(0).Position.x += 1;
+          break;
+        
       }
     }
 
