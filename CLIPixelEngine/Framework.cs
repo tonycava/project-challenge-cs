@@ -29,20 +29,16 @@ namespace CLIPixelEngine.Engine
       switch (value)
       {
         case "up arrow":
-          Console.WriteLine("up arrow pressed");
-          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "up");
+          Engine.entities.ElementAt(0).Position.y -= 1;
           break;
         case "right arrow":
-          Console.WriteLine("right arrow pressed");
-          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "right");
+          Engine.entities.ElementAt(0).Position.x += 1;
           break;
         case "down arrow":
-          Console.WriteLine("down arrow pressed");
-          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "down");
+          Engine.entities.ElementAt(0).Position.y += 1;
           break;
         case "left arrow":
-          Console.WriteLine("left arrow pressed");
-          Engine.bus.AddMessage(ActionType.SCENE, Actions.MOVEMENT, "left");
+          Engine.entities.ElementAt(0).Position.x -= 1;
           break;
       }
     }
@@ -58,7 +54,6 @@ namespace CLIPixelEngine.Engine
       {
         case Actions.MOVEMENT:
           Mouvement(value);
-          
           break;
       }
     }
@@ -72,15 +67,14 @@ namespace CLIPixelEngine.Engine
           Engine.entities.ElementAt(0).Position.y -= 1;
           break;
         case "right":
-          Engine.entities.ElementAt(0).Position.x -= 1;
+          Engine.entities.ElementAt(0).Position.x += 1;
           break;
         case "down":
           Engine.entities.ElementAt(0).Position.y += 1;
           break;
         case "left":
-          Engine.entities.ElementAt(0).Position.x += 1;
+          Engine.entities.ElementAt(0).Position.x -= 1;
           break;
-        
       }
     }
 
@@ -92,6 +86,8 @@ namespace CLIPixelEngine.Engine
 
   public class MessageReceiver
   {
+    private bool _isFollowing = true;
+
     public MessageReceiver()
     {
     }
@@ -119,8 +115,10 @@ namespace CLIPixelEngine.Engine
             break;
         }
       } while (Engine.bus.Mqueue.Count != 0);
+
       
-      Engine.renderer.Draw();
+      Engine.logicEngine.Update();
+      
       return Task.CompletedTask;
     }
   }

@@ -61,18 +61,20 @@ namespace CLIPixelEngine.Engine
       int EndAtX = Engine.camera.Position.x + Engine.camera.Fov.x > _map.Size.x ?
         _map.Size.x : Engine.camera.Position.x + Engine.camera.Fov.x;
 
-      int StartAtY = Engine.camera.Position.y - Engine.camera.Fov.y < 0 ?
+      
+      int StartAtY = Engine.camera.Position.y - Engine.camera.Fov.y < 0 ? 
         0 : Engine.camera.Position.y - Engine.camera.Fov.y;
+      
       int EndAtY = Engine.camera.Position.y + Engine.camera.Fov.y > _map.Size.y ?
         _map.Size.y : Engine.camera.Position.y + Engine.camera.Fov.y;
-
-      StartAtX = StartAtX + Engine.camera.Fov.x * 2 < _map.Size.x ?
-        StartAtX : _map.Size.x - Engine.camera.Fov.x * 2;
-      EndAtX = EndAtX > _map.Size.x ? _map.Size.x : EndAtX;
       
-      StartAtY = StartAtY + Engine.camera.Fov.y * 2 < _map.Size.y ?
-        StartAtY : _map.Size.y - Engine.camera.Fov.y * 2;
-      EndAtX = EndAtY > _map.Size.y ? _map.Size.y : EndAtY;
+      // StartAtX = StartAtX + Engine.camera.Fov.x * 2 < _map.Size.x ?
+      //   StartAtX : _map.Size.x - Engine.camera.Fov.x * 2;
+      // EndAtX = EndAtX > _map.Size.x ? _map.Size.x : EndAtX;
+      //
+      // StartAtY = StartAtY + Engine.camera.Fov.y * 2 < _map.Size.y ?
+      //   StartAtY : _map.Size.y - Engine.camera.Fov.y * 2;
+      // EndAtX = EndAtY > _map.Size.y ? _map.Size.y : EndAtY;
       
       
       DrawEntities(Map);
@@ -96,9 +98,6 @@ namespace CLIPixelEngine.Engine
 
     public void DrawEntities(Bitmap Map)
     {
-      Console.WriteLine(Engine.entities.ElementAt(0).Position.x);
-      Console.WriteLine(Engine.entities.ElementAt(0).Position.y);
-      
       const int sizeOfSprite = 8;
       foreach (var entity in Engine.entities)
       {

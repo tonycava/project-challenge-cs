@@ -2,14 +2,17 @@ namespace CLIPixelEngine.Engine
 {
   public class Logic
   {
+    private bool _isFollowing = true;
+
     public async void Update()
     {
-      //TODO: Logic handling
-      
-      await Engine.messageReceiver.HandleMessage();
-      
-      await Engine.renderer.Draw();
+      if (_isFollowing)
+      {
+        Engine.camera.Position.x = Engine.entities.ElementAt(0).Position.y;
+        Engine.camera.Position.y = Engine.entities.ElementAt(0).Position.x;
+      }
 
+      await Engine.renderer.Draw();
     }
   }
 }

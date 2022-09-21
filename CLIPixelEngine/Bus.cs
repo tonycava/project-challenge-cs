@@ -33,6 +33,7 @@ namespace CLIPixelEngine.Engine.Bus
     public void AddMessage(ActionType type, Actions action, string value)
     {
       Mqueue.Enqueue(new Message(type, action, value));
+
       Engine.messageReceiver.HandleMessage();
     }
   }
