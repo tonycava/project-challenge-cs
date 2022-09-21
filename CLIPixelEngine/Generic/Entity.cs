@@ -17,9 +17,9 @@ namespace CLIPixelEngine.Engine.Generic
 
         public Entity(Vector2 position,string name,Scripts script)
         {
-            this.Position = new Vector2(0, 0);
-            this.Sprite = new Bitmap("./Assets/Sprites/" + name);
-            this.Script = null;
+            Position = new Vector2(0, 0);
+            Sprite = new Bitmap("./Assets/Sprites/" + name);
+            Script = null;
         }
     }
 }

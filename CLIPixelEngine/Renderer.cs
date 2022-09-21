@@ -22,7 +22,6 @@ namespace CLIPixelEngine.Engine
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern IntPtr GetStdHandle(int handle);
 
-
     private static void SetupConsole()
     {
       handle = GetStdHandle(-11);
@@ -51,17 +50,20 @@ namespace CLIPixelEngine.Engine
 
     public void Draw()
     {
+      ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
+      ConsoleHelper.SetCurrentFont("Consolas", 10);
+      
       Bitmap Map = GetMap(_map.Path);
 
       if (handle == IntPtr.Zero) SetupConsole();
 
       int StartAtX = _camera.Position.x - _camera.Fov < 0 ? 0 : _camera.Position.x - _camera.Fov;
-      int EndAtX = _camera.Position.x + _camera.Fov > _map.Size.x ? _map.Size.x : _camera.Position.x + _camera.Fov;      
-      
+      int EndAtX = _camera.Position.x + _camera.Fov > _map.Size.x ? _map.Size.x : _camera.Position.x + _camera.Fov;
+
       int StartAtY = _camera.Position.y - _camera.Fov < 0 ? 0 : _camera.Position.y - _camera.Fov;
       int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
 
-      
+
       for (int x = StartAtX; x < EndAtX; x++)
       {
         for (int y = StartAtY; y < EndAtY; y++)
@@ -76,9 +78,8 @@ namespace CLIPixelEngine.Engine
         Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
         Console.Write("\n");
       }
-    }ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
-           ConsoleHelper.SetCurrentFont("Consolas
-
+    }
+    
     public void SetMap(Map map)
     {
       _map = map;
