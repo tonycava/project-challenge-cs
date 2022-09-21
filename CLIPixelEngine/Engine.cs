@@ -8,10 +8,7 @@ namespace CLIPixelEngine.Engine
     public class Engine
     {
         public static MessageBus bus = new MessageBus();
-        public static List<Entity> entities = new List<Entity>
-        {
-            new Entity(new Vector2Int(64, 64), "purple_warrior.png", null)
-        };
+        public static List<Entity> entities = new List<Entity>();
         public static Clock clock = new Clock();
         public static Renderer renderer = new Renderer();
         public static Camera camera = new Camera();
