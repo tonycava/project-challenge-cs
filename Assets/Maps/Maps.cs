@@ -1,47 +1,47 @@
 using CLIPixelEngine.Engine.Generic;
+using Game.EntityHandler.Maps.DebugMAP;
 
 namespace Game.Maps
 {
-    public class Map
+  public class Map
+  {
+    public string Path;
+    public Vector2Int Size;
+
+    public Map()
     {
-        public string Path;
-        public Vector2Int Size;
-
-        public Map()
-        {
-            Path = "./Assets/Maps/DebugMAP/DebugMAP.png";
-            Size = new Vector2Int(32,32);
-        }
-        
-        public Map(string path,Vector2Int size)
-        {
-            Path = path;
-            Size = size;
-        }
+      Path = "./Assets/Maps/DebugMAP/DebugMAP.png";
+      Size = new Vector2Int(32, 32);
     }
-    
-    public class MapsHandler
+
+    public Map(string path, Vector2Int size)
     {
-        
-        
-        public enum MapKeys
-        {
-            DEBUG_MAP,
-            BIG_DEBUG_MAP,
-        }
-
-        public static Map GetMap(MapKeys key)
-        {
-            switch (key)
-            {
-                case MapKeys.DEBUG_MAP:
-                    break;
-                case MapKeys.BIG_DEBUG_MAP:
-                    return new Map("./Assets/Maps/BigDebugMAP/BigDebugMAP.png", new Vector2Int(128, 128));
-                    break;
-            }
-
-            return new Map("./Assets/Maps/DebugMAP/DebugMAP.png", new Vector2Int(32,32));
-        }
+      Path = path;
+      Size = size;
     }
+  }
+
+  public class MapsHandler
+  {
+    public enum MapKeys
+    {
+      DEBUG_MAP,
+      BIG_DEBUG_MAP,
+    }
+
+    public static Map GetMap(MapKeys key)
+    {
+      switch (key)
+      {
+        case MapKeys.DEBUG_MAP:
+          return new Map("./Assets/Maps/DebugMAP/DebugMAP.png", new Vector2Int(32, 32));
+        
+        case MapKeys.BIG_DEBUG_MAP:
+          return new Map("./Assets/Maps/BigDebugMAP/BigDebugMAP.png", new Vector2Int(128, 128));
+        
+        default:
+          return new Map("./Assets/Maps/DebugMAP/DebugMAP.png", new Vector2Int(32, 32));
+      }
+    }
+  }
 }

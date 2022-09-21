@@ -52,7 +52,6 @@ namespace CLIPixelEngine.Engine
     {
       ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
-      
       Bitmap Map = GetMap(_map.Path);
 
       if (handle == IntPtr.Zero) SetupConsole();
@@ -78,6 +77,25 @@ namespace CLIPixelEngine.Engine
 
         Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
         Console.Write("\n");
+      }
+    }
+
+    public void DrawSprite(Bitmap Map)
+    {
+      const int sizeOfSprite = 8;
+      foreach (var entity in Engine.entities)
+      {
+        for (int x = 0; x < sizeOfSprite; x++)
+        {
+          for (int y = 0; y < sizeOfSprite; y++)
+          {
+            Color spriteColor = entity.Sprite.GetPixel(x, y);
+            if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+            {
+              Map.SetPixel(entity.Position.x - 4 + x, entity.Position.y - 4 + y, spriteColor);
+            }
+          }
+        }
       }
     }
     

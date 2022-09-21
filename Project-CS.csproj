@@ -28,6 +28,10 @@
     <AdditionalFiles Include="Assets\Sprites\purple_mage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
+    <None Remove="Assets\Sprites\purple_warrior.png" />
+    <AdditionalFiles Include="Assets\Sprites\purple_warrior.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
 
   <ItemGroup>
