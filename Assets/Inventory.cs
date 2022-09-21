@@ -1,6 +1,6 @@
 namespace Game.EntityHandler
 {
-    public interface IEquipment
+    public class Inventory
     {
         public uint head { get; set; }
         public uint uBody { get; set; }
