@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
-using Game.EntityHandler.Maps.DebugMAP;
+using Game.Maps;
 
 namespace CLIPixelEngine.Engine
 {
@@ -36,26 +36,30 @@ namespace CLIPixelEngine.Engine
       return new Bitmap(pathToMap);
     }
 
-    public static void Draw()
+    private Camera _camera;
+    private Map _map;
+
+    public void SetupCamera(Camera camera)
     {
-      const int fov = 5;
-      Vector2Int camera = Camera.cordOfCharacter;
-      Vector2Int sizeOfMap = DebugMap.sizeOfMap;
+      _camera = camera;
+    }
 
+    public void PutCameraAt(Vector2Int position)
+    {
+      _camera.Position = position;
+    }
 
-      Bitmap Map = GetMap("./Assets/Maps/DebugMAP/DebugMAP.png");
+    public void Draw()
+    {
+      Bitmap Map = GetMap(_map.Path);
 
       if (handle == IntPtr.Zero) SetupConsole();
 
-
-      int StartAtX = camera.x - fov < 0 ? 0 : camera.x - fov;
+      int StartAtX = _camera.Position.x - _camera.Fov < 0 ? 0 : _camera.Position.x - _camera.Fov;
+      int EndAtX = _camera.Position.x + _camera.Fov > _map.Size.x ? _map.Size.x : _camera.Position.x + _camera.Fov;      
       
-      int EndAtX = camera.x + sizeOfMap.x > sizeOfMap.x ? sizeOfMap.x : camera.x + sizeOfMap.x;      
-      
-      
-      int StartAtY = camera.y - fov < 0 ? 0 : camera.y - fov;
-      
-      int EndAtY = camera.y + sizeOfMap.y > sizeOfMap.y ? sizeOfMap.y : camera.y + sizeOfMap.y;
+      int StartAtY = _camera.Position.y - _camera.Fov < 0 ? 0 : _camera.Position.y - _camera.Fov;
+      int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
 
       
       for (int x = StartAtX; x < EndAtX; x++)
@@ -74,8 +78,9 @@ namespace CLIPixelEngine.Engine
       }
     }
 
-    public void SetMap(string path)
+    public void SetMap(Map map)
     {
+      _map = map;
     }
   }
 }

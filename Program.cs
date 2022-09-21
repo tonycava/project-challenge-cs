@@ -7,7 +7,7 @@ namespace Project_CS
     {
         public static void Main()
         {
-            Renderer.Draw();
+            CLIPixelEngine.Engine.Engine.StartEngine();
         }
     }
 }

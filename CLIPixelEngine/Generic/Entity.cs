@@ -6,20 +6,20 @@ namespace CLIPixelEngine.Engine.Generic
     {
         public Vector2 Position;
         public Bitmap Sprite;
-        public Scripts Scripts;
+        public Scripts Script;
 
         public Entity()
         {
             Position = new Vector2(0, 0);
             Sprite = new Bitmap("./Assets/Sprites/debugSprite.png");
-            Scripts = null;
+            Script = null;
         }
 
         public Entity(Vector2 position,string name,Scripts script)
         {
-            this.position = new Vector2(0, 0);
-            this.sprite = new Bitmap("./Assets/Sprites/" + name);
-            this.script = null;
+            this.Position = new Vector2(0, 0);
+            this.Sprite = new Bitmap("./Assets/Sprites/" + name);
+            this.Script = null;
         }
     }
 }
