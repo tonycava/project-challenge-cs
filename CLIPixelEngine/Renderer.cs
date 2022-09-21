@@ -37,48 +37,47 @@ namespace CLIPixelEngine.Engine
     {
       return new Bitmap(pathToMap);
     }
-    
+
     private Map _map;
-    
+
     public void PutCameraAt(Vector2Int position)
     {
       Engine.camera.Position = position;
     }
-    
+
     public Task Draw()
     {
       Console.Clear();
-      
+
       ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
       Bitmap Map = GetMap(_map.Path);
 
       if (handle == IntPtr.Zero) SetupConsole();
 
-      
-      int StartAtX = Engine.camera.Position.x - Engine.camera.Fov.x < 0 ?
-        0 : Engine.camera.Position.x - Engine.camera.Fov.x;
-      int EndAtX = Engine.camera.Position.x + Engine.camera.Fov.x > _map.Size.x ?
-        _map.Size.x : Engine.camera.Position.x + Engine.camera.Fov.x;
+      int StartAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
+      int EndAtX = Engine.camera.Position.x + Engine.camera.Fov.x;
 
+
+      int StartAtY = Engine.camera.Position.y - Engine.camera.Fov.y;
+      int EndAtY = Engine.camera.Position.y + Engine.camera.Fov.y;
       
-      int StartAtY = Engine.camera.Position.y - Engine.camera.Fov.y < 0 ? 
-        0 : Engine.camera.Position.y - Engine.camera.Fov.y;
+      EndAtX = EndAtX > _map.Size.y ? _map.Size.y : EndAtX;
+      StartAtX = EndAtX == _map.Size.y ? _map.Size.y - Engine.camera.Fov.x * 2 : StartAtX;
+
+      EndAtY = EndAtY > _map.Size.x ? _map.Size.x : EndAtY;
+      StartAtY = EndAtY == _map.Size.x ? _map.Size.x - Engine.camera.Fov.y * 2 : StartAtY;
+
+      StartAtX = StartAtX < 0 ? 0 : StartAtX;
+      EndAtX = StartAtX == 0 ? StartAtX + Engine.camera.Fov.x * 2 : EndAtX;
       
-      int EndAtY = Engine.camera.Position.y + Engine.camera.Fov.y > _map.Size.y ?
-        _map.Size.y : Engine.camera.Position.y + Engine.camera.Fov.y;
-      
-      // StartAtX = StartAtX + Engine.camera.Fov.x * 2 < _map.Size.x ?
-      //   StartAtX : _map.Size.x - Engine.camera.Fov.x * 2;
-      // EndAtX = EndAtX > _map.Size.x ? _map.Size.x : EndAtX;
-      //
-      // StartAtY = StartAtY + Engine.camera.Fov.y * 2 < _map.Size.y ?
-      //   StartAtY : _map.Size.y - Engine.camera.Fov.y * 2;
-      // EndAtX = EndAtY > _map.Size.y ? _map.Size.y : EndAtY;
-      
-      
+      StartAtY = StartAtY < 0 ? 0 : StartAtY;
+      EndAtY = StartAtY == 0 ? StartAtY + Engine.camera.Fov.y * 2 : EndAtY;
+
       DrawEntities(Map);
-      
+
+      string frame = "";
+
       for (int x = StartAtX; x < EndAtX; x++)
       {
         for (int y = StartAtY; y < EndAtY; y++)
@@ -87,12 +86,14 @@ namespace CLIPixelEngine.Engine
           byte g = Map.GetPixel(y, x).G;
           byte b = Map.GetPixel(y, x).B;
 
-          Console.Write("\x1b[48;2;" + r + ";" + g + ";" + b + "m  ");
+          frame += "\x1b[48;2;" + r + ";" + g + ";" + b + "m  ";
         }
 
-        Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
-        Console.Write("\n");
+        frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
+      Console.Write(frame);
+      Console.Write(frame.Length);
+
       return Task.CompletedTask;
     }
 
@@ -105,16 +106,22 @@ namespace CLIPixelEngine.Engine
         {
           for (int y = 0; y < sizeOfSprite; y++)
           {
-            Color spriteColor = entity.Sprite.GetPixel(x, y);
-            if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+            if (entity.Position.x - 4 + x < _map.Size.x
+                && entity.Position.y - 4 + y < _map.Size.y
+                && entity.Position.x + 4 + x > 0
+                && entity.Position.y + 4 + y > 0)
             {
-              Map.SetPixel(entity.Position.x - 4 + x, entity.Position.y - 4 + y, spriteColor);
+              Color spriteColor = entity.Sprite.GetPixel(x, y);
+              if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+              {
+                Map.SetPixel(entity.Position.x - 4 + x, entity.Position.y - 4 + y, spriteColor);
+              }
             }
           }
         }
       }
     }
-    
+
     public void SetMap(Map map)
     {
       _map = map;

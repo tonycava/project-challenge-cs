@@ -17,10 +17,10 @@ namespace CLIPixelEngine.Engine
         public static MessageReceiver messageReceiver = new MessageReceiver();
         public static void StartEngine()
         {
-            camera.Fov = new Vector2Int(40,60);
+            camera.Fov = new Vector2Int(20,30);
             renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
             renderer.PutCameraAt(new Vector2Int(64, 64));
-            entities.Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png", null));
+            entities.Add(new Entity(new Vector2Int(120, 120), "purple_warrior.png", null));
             
             // clock.Start();
             // clock.Update();

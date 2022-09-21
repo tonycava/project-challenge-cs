@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace CLIPixelEngine.Engine
 {
   public class Logic
