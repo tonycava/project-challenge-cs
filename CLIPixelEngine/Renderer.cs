@@ -51,6 +51,8 @@ namespace CLIPixelEngine.Engine
 
     public void Draw()
     {
+      Console.Clear();
+      
       ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
       Bitmap Map = GetMap(_map.Path);
@@ -64,6 +66,9 @@ namespace CLIPixelEngine.Engine
       int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
 
       DrawSprite(Map);
+      
+      
+      
 
       for (int x = StartAtX; x < EndAtX; x++)
       {

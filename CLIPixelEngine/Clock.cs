@@ -6,6 +6,7 @@ namespace CLIPixelEngine.Engine
   {
     public void Start()
     {
+      
     }
 
     public void Update()

@@ -28,11 +28,12 @@ namespace CLIPixelEngine.Engine.Bus
   {
     //TODO: Fill with enum
 
-    public Queue<Message> Mqueue;
+    public Queue<Message> Mqueue = new Queue<Message>();
 
-    public void AddMessage(ActionType type,Actions action,string value)
+    public void AddMessage(ActionType type, Actions action, string value)
     {
-      Mqueue.Enqueue(new Message(type,action,value));
+      Mqueue.Enqueue(new Message(type, action, value));
+      MessageReceiver.HandleMessage();
     }
   }
 
@@ -48,8 +49,5 @@ namespace CLIPixelEngine.Engine.Bus
       Action = action;
       Value = value;
     }
-    
-    
-    
   }
 }

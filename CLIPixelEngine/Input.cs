@@ -5,7 +5,7 @@ namespace CLIPixelEngine.Engine
 {
   public class Input
   {
-    public async void Start()
+    public static void Start()
     {
       ConsoleKeyInfo keyinfo = new ConsoleKeyInfo();
       do
