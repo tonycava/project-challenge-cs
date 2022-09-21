@@ -66,10 +66,12 @@ namespace CLIPixelEngine.Engine
       int EndAtY = Engine.camera.Position.y + Engine.camera.Fov.y > _map.Size.y ?
         _map.Size.y : Engine.camera.Position.y + Engine.camera.Fov.y;
 
-      StartAtX = StartAtX + Engine.camera.Fov.x * 2 < _map.Size.x ? StartAtX : _map.Size.x - Engine.camera.Fov.x * 2;
+      StartAtX = StartAtX + Engine.camera.Fov.x * 2 < _map.Size.x ?
+        StartAtX : _map.Size.x - Engine.camera.Fov.x * 2;
       EndAtX = EndAtX > _map.Size.x ? _map.Size.x : EndAtX;
       
-      StartAtY = StartAtY + Engine.camera.Fov.y * 2 < _map.Size.y ? StartAtY : _map.Size.y - Engine.camera.Fov.y * 2;
+      StartAtY = StartAtY + Engine.camera.Fov.y * 2 < _map.Size.y ?
+        StartAtY : _map.Size.y - Engine.camera.Fov.y * 2;
       EndAtX = EndAtY > _map.Size.y ? _map.Size.y : EndAtY;
       
       
