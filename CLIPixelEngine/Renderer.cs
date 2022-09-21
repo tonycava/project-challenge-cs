@@ -52,7 +52,6 @@ namespace CLIPixelEngine.Engine
     {
       ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
-
       Bitmap Map = GetMap(_map.Path);
 
       if (handle == IntPtr.Zero) SetupConsole();
@@ -62,24 +61,6 @@ namespace CLIPixelEngine.Engine
 
       int StartAtY = _camera.Position.y - _camera.Fov < 0 ? 0 : _camera.Position.y - _camera.Fov;
       int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
-
-      Console.Write(Color.Black);
-
-      foreach (var entity in Engine.entities)
-      {
-        for (int x = 0; x < 8; x++)
-        {
-          for (int y = 0; y < 8; y++)
-          {
-            Color spriteColor = entity.Sprite.GetPixel(x, y);
-            Console.Write(spriteColor);
-            if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
-            {
-               Map.SetPixel(entity.Position.x - 4 + x, entity.Position.y - 4 + y, spriteColor);
-            }
-          }
-        }
-      }
 
 
       for (int x = StartAtX; x < EndAtX; x++)
@@ -98,6 +79,25 @@ namespace CLIPixelEngine.Engine
       }
     }
 
+    public void DrawSprite(Bitmap Map)
+    {
+      const int sizeOfSprite = 8;
+      foreach (var entity in Engine.entities)
+      {
+        for (int x = 0; x < sizeOfSprite; x++)
+        {
+          for (int y = 0; y < sizeOfSprite; y++)
+          {
+            Color spriteColor = entity.Sprite.GetPixel(x, y);
+            if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+            {
+              Map.SetPixel(entity.Position.x - 4 + x, entity.Position.y - 4 + y, spriteColor);
+            }
+          }
+        }
+      }
+    }
+    
     public void SetMap(Map map)
     {
       _map = map;

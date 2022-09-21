@@ -22,7 +22,6 @@ namespace CLIPixelEngine.Engine
             renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
             renderer.SetupCamera(camera);
             renderer.PutCameraAt(new Vector2Int(64, 64));
-            
             clock.Start();
             clock.Update();
             
