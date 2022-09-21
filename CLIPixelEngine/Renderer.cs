@@ -49,7 +49,7 @@ namespace CLIPixelEngine.Engine
       _camera.Position = position;
     }
 
-    public void Draw()
+    public Task Draw()
     {
       Console.Clear();
       
@@ -59,17 +59,15 @@ namespace CLIPixelEngine.Engine
 
       if (handle == IntPtr.Zero) SetupConsole();
 
+      
       int StartAtX = _camera.Position.x - _camera.Fov < 0 ? 0 : _camera.Position.x - _camera.Fov;
       int EndAtX = _camera.Position.x + _camera.Fov > _map.Size.x ? _map.Size.x : _camera.Position.x + _camera.Fov;
 
       int StartAtY = _camera.Position.y - _camera.Fov < 0 ? 0 : _camera.Position.y - _camera.Fov;
       int EndAtY = _camera.Position.y + _camera.Fov > _map.Size.y ? _map.Size.y : _camera.Position.y + _camera.Fov;
 
-      DrawSprite(Map);
+      DrawEntities(Map);
       
-      
-      
-
       for (int x = StartAtX; x < EndAtX; x++)
       {
         for (int y = StartAtY; y < EndAtY; y++)
@@ -84,10 +82,14 @@ namespace CLIPixelEngine.Engine
         Console.Write("\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m");
         Console.Write("\n");
       }
+      return Task.CompletedTask;
     }
 
-    public void DrawSprite(Bitmap Map)
+    public void DrawEntities(Bitmap Map)
     {
+      Console.WriteLine(Engine.entities.ElementAt(0).Position.x);
+      Console.WriteLine(Engine.entities.ElementAt(0).Position.y);
+      
       const int sizeOfSprite = 8;
       foreach (var entity in Engine.entities)
       {

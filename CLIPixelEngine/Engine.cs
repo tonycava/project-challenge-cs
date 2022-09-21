@@ -23,7 +23,7 @@ namespace CLIPixelEngine.Engine
             renderer.PutCameraAt(new Vector2Int(64, 64));
             entities.Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png", null));
             
-            clock.Start();
+            // clock.Start();
             clock.Update();
             
             Input.Start();

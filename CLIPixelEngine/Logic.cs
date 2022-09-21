@@ -2,10 +2,14 @@ namespace CLIPixelEngine.Engine
 {
   public class Logic
   {
-    public void Update()
+    public async void Update()
     {
       //TODO: Logic handling
-      Engine.renderer.Draw();
+      
+      await Engine.messageReceiver.HandleMessage();
+      
+      await Engine.renderer.Draw();
+
     }
   }
 }

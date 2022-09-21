@@ -53,6 +53,7 @@ namespace CLIPixelEngine.Engine
       {
         case Actions.MOVEMENT:
           Mouvement(value);
+          
           break;
       }
     }
@@ -63,7 +64,8 @@ namespace CLIPixelEngine.Engine
       switch (value)
       {
         case "up":
-          Engine.entities.ElementAt(0).Position.x += 1;
+          Engine.entities.ElementAt(0).Position.y += 1;
+          Engine.camera.Position = Engine.entities.ElementAt(0).Position;
           break;
       }
     }
@@ -81,8 +83,10 @@ namespace CLIPixelEngine.Engine
     }
 
     //TODO: add the different Class exemple Input* input;
-    public static void HandleMessage()
+    public Task HandleMessage()
     {
+      if (Engine.bus.Mqueue.Count == 0) return Task.CompletedTask;
+
       do
       {
         Message message = Engine.bus.Mqueue.Dequeue();
@@ -102,7 +106,8 @@ namespace CLIPixelEngine.Engine
         }
       } while (Engine.bus.Mqueue.Count != 0);
       
-      
+      Engine.renderer.Draw();
+      return Task.CompletedTask;
     }
   }
 }
