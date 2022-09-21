@@ -1,11 +1,11 @@
 namespace CLIPixelEngine.Engine
 {
-    public class Logic
+  public class Logic
+  {
+    public void Update()
     {
-        public void Update()
-        {
-            //TODO: Logic handling
-            Engine.renderer.Draw();
-        }
+      //TODO: Logic handling
+      Engine.renderer.Draw();
     }
+  }
 }
