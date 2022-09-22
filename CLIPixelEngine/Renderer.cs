@@ -14,7 +14,18 @@ namespace CLIPixelEngine.Engine
 {
   public class Renderer
   {
-    public static IntPtr handle;
+    public static IntPtr _handle;
+    private Map _map;
+    private static int _mode;
+
+    private int _startAtX;
+    private int _endAtX;
+
+    private int _startAtY;
+    private int _endAtY;
+
+    private string _frame;
+
 
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
@@ -27,72 +38,63 @@ namespace CLIPixelEngine.Engine
 
     private static void SetupConsole()
     {
-      handle = GetStdHandle(-11);
-      int mode;
-      GetConsoleMode(handle, out mode);
-      SetConsoleMode(handle, mode | 0x4);
+      _handle = GetStdHandle(-11);
+      GetConsoleMode(_handle, out _mode);
+      SetConsoleMode(_handle, _mode | 0x4);
     }
 
-    static Bitmap GetMap(string pathToMap)
-    {
-      return new Bitmap(pathToMap);
-    }
-
-    private Map _map;
-
-    public void PutCameraAt(Vector2Int position)
-    {
-      Engine.camera.Position = position;
-    }
-
+    static Bitmap GetMap(string pathToMap) => new Bitmap(pathToMap);
+    public void SetMap(Map map) => _map = map;
+    public void PutCameraAt(Vector2Int position) => Engine.camera.Position = position;
+    
     public Task Draw()
     {
       Console.Clear();
-
-      ConsoleHelper.FontInfo info = new ConsoleHelper.FontInfo();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
+
       Bitmap Map = GetMap(_map.Path);
+      if (_handle == IntPtr.Zero) SetupConsole();
 
-      if (handle == IntPtr.Zero) SetupConsole();
-
-      int StartAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
-      int EndAtX = Engine.camera.Position.x + Engine.camera.Fov.x;
-
-
-      int StartAtY = Engine.camera.Position.y - Engine.camera.Fov.y;
-      int EndAtY = Engine.camera.Position.y + Engine.camera.Fov.y;
-      
-      EndAtX = EndAtX > _map.Size.y ? _map.Size.y : EndAtX;
-      StartAtX = EndAtX == _map.Size.y ? _map.Size.y - Engine.camera.Fov.x * 2 : StartAtX;
-
-      EndAtY = EndAtY > _map.Size.x ? _map.Size.x : EndAtY;
-      StartAtY = EndAtY == _map.Size.x ? _map.Size.x - Engine.camera.Fov.y * 2 : StartAtY;
-
-      StartAtX = StartAtX < 0 ? 0 : StartAtX;
-      EndAtX = StartAtX == 0 ? StartAtX + Engine.camera.Fov.x * 2 : EndAtX;
-      
-      StartAtY = StartAtY < 0 ? 0 : StartAtY;
-      EndAtY = StartAtY == 0 ? StartAtY + Engine.camera.Fov.y * 2 : EndAtY;
-
+      // Draw enemy and my sprites
       DrawEntities(Map);
 
-      string frame = "";
+      // Clear frame to redraw the new updated map
+      _frame = "";
 
-      for (int x = StartAtX; x < EndAtX; x++)
+      _startAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
+      _endAtX = Engine.camera.Position.x + Engine.camera.Fov.x;
+
+      _startAtY = Engine.camera.Position.y - Engine.camera.Fov.y;
+      _endAtY = Engine.camera.Position.y + Engine.camera.Fov.y;
+
+      _endAtX = _endAtX > _map.Size.y ? _map.Size.y : _endAtX;
+      _startAtX = _endAtX == _map.Size.y ? _map.Size.y - Engine.camera.Fov.x * 2 : _startAtX;
+
+      _endAtY = _endAtY > _map.Size.x ? _map.Size.x : _endAtY;
+      _startAtY = _endAtY == _map.Size.x ? _map.Size.x - Engine.camera.Fov.y * 2 : _startAtY;
+
+      _startAtX = _startAtX < 0 ? 0 : _startAtX;
+      _endAtX = _startAtX == 0 ? _startAtX + Engine.camera.Fov.x * 2 : _endAtX;
+
+      _startAtY = _startAtY < 0 ? 0 : _startAtY;
+      _endAtY = _startAtY == 0 ? _startAtY + Engine.camera.Fov.y * 2 : _endAtY;
+      
+
+      for (int x = _startAtX; x < _endAtX; x++)
       {
-        for (int y = StartAtY; y < EndAtY; y++)
+        for (int y = _startAtY; y < _endAtY; y++)
         {
           byte r = Map.GetPixel(y, x).R;
           byte g = Map.GetPixel(y, x).G;
           byte b = Map.GetPixel(y, x).B;
 
-          frame += "\x1b[48;2;" + r + ";" + g + ";" + b + "m  ";
+          _frame += "\x1b[48;2;" + r + ";" + g + ";" + b + "m  ";
         }
 
-        frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
+        _frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
-      Console.Write(frame);
-      Console.Write(frame.Length);
+      Console.Clear();
+      Console.Write(_frame);
 
       return Task.CompletedTask;
     }
@@ -120,11 +122,6 @@ namespace CLIPixelEngine.Engine
           }
         }
       }
-    }
-
-    public void SetMap(Map map)
-    {
-      _map = map;
     }
   }
 }
