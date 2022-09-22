@@ -1,0 +1,360 @@
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key D was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key Z was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 255
+-> Can move ? False
+Key D was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key D was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key D was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key D was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key S was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key D was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True
+Key Q was pressed
+Checking for collision :
+-> does this map have a collision texture ? yes
+-> Opening collision texture
+-> getting the direction
+-> Sampling
+-> sample = 0
+-> Can move ? True

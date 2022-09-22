@@ -29,7 +29,14 @@
     <None Remove="Assets\Sprites\purple_warrior.png" />
     <EmbeddedResource Include="Assets\Sprites\purple_warrior.png" />
     <None Remove="Assets\Maps\BigDebugMap\BigDebugMap.png" />
-    <EmbeddedResource Include="Assets\Maps\BigDebugMap\BigDebugMap.png" />
+    <None Remove="Assets\Maps\BigDebugMap\map.png" />
+    <AdditionalFiles Include="Assets\Maps\BigDebugMap\map.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <None Remove="Assets\Maps\BigDebugMap\collision.png" />
+    <AdditionalFiles Include="Assets\Maps\BigDebugMap\collision.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +45,10 @@
 
   <ItemGroup>
     <None Remove="Assets\map.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CLIPixelEngine\Log" />
   </ItemGroup>
 
 </Project>

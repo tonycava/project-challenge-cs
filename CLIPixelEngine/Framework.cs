@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Principal;
@@ -24,57 +25,45 @@ namespace CLIPixelEngine.Engine
     {
       switch (value)
       {
-        case "up arrow":
-          Engine.entities.ElementAt(0).Position.y -= 1;
+        case "Z":
+          Engine.logger.Log("Key Z was pressed\n");
+          if (Engine.logicEngine.TryMove(Engine.entities.ElementAt(0), 0, 2))
+          {
+            Engine.entities.ElementAt(0).Position.y -= 2;
+            Engine.entities.ElementAt(0).rotation = 0;
+          }
           break;
-        case "right arrow":
-          Engine.entities.ElementAt(0).Position.x += 1;
+        case "D":
+          Engine.logger.Log("Key D was pressed\n");
+          if (Engine.logicEngine.TryMove(Engine.entities.ElementAt(0), 1, 2))
+          {
+            Engine.entities.ElementAt(0).Position.x += 2;
+            Engine.entities.ElementAt(0).rotation = 1;
+          }
           break;
-        case "down arrow":
-          Engine.entities.ElementAt(0).Position.y += 1;
+        case "S":
+          Engine.logger.Log("Key S was pressed\n");
+          if (Engine.logicEngine.TryMove(Engine.entities.ElementAt(0), 2, 2))
+          {
+            Engine.entities.ElementAt(0).Position.y += 2;
+            Engine.entities.ElementAt(0).rotation = 2;
+          }
           break;
-        case "left arrow":
-          Engine.entities.ElementAt(0).Position.x -= 1;
+        case "Q":
+          Engine.logger.Log("Key Q was pressed\n");
+          if (Engine.logicEngine.TryMove(Engine.entities.ElementAt(0), 3, 2))
+          {
+            Engine.entities.ElementAt(0).Position.x -= 2;
+            Engine.entities.ElementAt(0).rotation = 3;
+          }
           break;
       }
     }
-
-
+    
     public void RenderHandler(Actions action, string value)
     {
     }
-
-    public void SceneHandler(Actions action, string value)
-    {
-      switch (action)
-      {
-        case Actions.MOVEMENT:
-          Mouvement(value);
-          break;
-      }
-    }
-
-
-    public void Mouvement(string value)
-    {
-      switch (value)
-      {
-        case "up":
-          Engine.entities.ElementAt(0).Position.y -= 1;
-          break;
-        case "right":
-          Engine.entities.ElementAt(0).Position.x += 1;
-          break;
-        case "down":
-          Engine.entities.ElementAt(0).Position.y += 1;
-          break;
-        case "left":
-          Engine.entities.ElementAt(0).Position.x -= 1;
-          break;
-      }
-    }
-
-
+    
     public void DialogueHandler(Actions action, string value)
     {
     }
@@ -83,12 +72,19 @@ namespace CLIPixelEngine.Engine
   public class MessageReceiver
   {
     private bool _isFollowing = true;
+    private int _processedFrame = 0;
+    public int CurrentFrame = 0;
 
-//TODO: add the different Class exemple Input* input;
+    //TODO: add the different Class exemple Input* input;
+    
+    /// <summary>
+    /// Read the bus and process its message
+    /// </summary>
+    /// <returns></returns>
     public Task HandleMessage()
     {
       if (Engine.bus.Mqueue.Count == 0) return Task.CompletedTask;
-
+      
       do
       {
         Message message = Engine.bus.Mqueue.Dequeue();
@@ -101,15 +97,12 @@ namespace CLIPixelEngine.Engine
           case ActionType.RENDER:
             Engine.messageLinker.RenderHandler(message.Action, message.Value);
             break;
-
-          case ActionType.SCENE:
-            Engine.messageLinker.SceneHandler(message.Action, message.Value);
-            break;
         }
       } while (Engine.bus.Mqueue.Count != 0);
-
+      // while (_processedFrame != CurrentFrame)
+      // _processedFrame = CurrentFrame;
+      
       Engine.logicEngine.Update();
-
       return Task.CompletedTask;
     }
   }

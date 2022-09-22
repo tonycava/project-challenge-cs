@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using CLIPixelEngine.Engine.Bus;
 
 namespace CLIPixelEngine.Engine
 {
+  
   public class Input
   {
     public async static void Start()
@@ -13,17 +15,17 @@ namespace CLIPixelEngine.Engine
         keyinfo = Console.ReadKey();
         switch (keyinfo.Key)
         {
-          case ConsoleKey.UpArrow:
-            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "up arrow");
+          case ConsoleKey.Z:
+            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "Z");
             break;
-          case ConsoleKey.RightArrow:
-            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "right arrow");
+          case ConsoleKey.D:
+            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "D");
             break;
-          case ConsoleKey.DownArrow:
-            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "down arrow");
+          case ConsoleKey.S:
+            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "S");
             break;
-          case ConsoleKey.LeftArrow:
-            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "left arrow");
+          case ConsoleKey.Q:
+            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "Q");
             break;
         }
       } while (keyinfo.Key != ConsoleKey.Escape);
