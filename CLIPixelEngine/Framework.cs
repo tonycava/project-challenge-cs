@@ -10,10 +10,6 @@ namespace CLIPixelEngine.Engine
 {
   public class MessageLinker
   {
-    public MessageLinker()
-    {
-    }
-
     public void InputHandler(Actions action, string value)
     {
       switch (action)
@@ -88,11 +84,7 @@ namespace CLIPixelEngine.Engine
   {
     private bool _isFollowing = true;
 
-    public MessageReceiver()
-    {
-    }
-
-    //TODO: add the different Class exemple Input* input;
+//TODO: add the different Class exemple Input* input;
     public Task HandleMessage()
     {
       if (Engine.bus.Mqueue.Count == 0) return Task.CompletedTask;
@@ -116,9 +108,8 @@ namespace CLIPixelEngine.Engine
         }
       } while (Engine.bus.Mqueue.Count != 0);
 
-      
       Engine.logicEngine.Update();
-      
+
       return Task.CompletedTask;
     }
   }
