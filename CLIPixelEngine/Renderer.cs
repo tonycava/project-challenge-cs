@@ -124,19 +124,18 @@ namespace CLIPixelEngine.Engine
     /// Draw all entities that are present in the Engine.entities list
     /// </summary>
     /// <param name="Map">the current map</param>
+    
+    private bool _invertX = false;
     public void DrawEntities(Bitmap Map)
     {
-      bool invertX = false;
-      
-      
       foreach (var entity in Engine.entities)
       {
         for (int x = 0; x < 8; x++)
         {
           for (int y = 0; y < 8; y++)
           {
-            invertX = entity.rotation == 3 ? true : invertX;
-            invertX = entity.rotation == 1 ? false : invertX;
+            _invertX = entity.rotation == 3 ? true : _invertX;
+            _invertX = entity.rotation == 1 ? false : _invertX;
             
             //Check if pixel is OOB
             if (entity.Position.x - 4 + x < _map.Size.x
@@ -144,7 +143,7 @@ namespace CLIPixelEngine.Engine
                 && entity.Position.x - 3 + x > 0
                 && entity.Position.y - 3 + y > 0)
             {
-              Color spriteColor = entity.Sprite.GetPixel(invertX ? 7 - x : 0 + x, y);
+              Color spriteColor = entity.Sprite.GetPixel(_invertX ? 7 - x : 0 + x, y);
               if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
               {
                 Map.SetPixel(entity.Position.x - 4 + x
