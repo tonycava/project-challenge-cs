@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using CLIPixelEngine.Engine.Generic;
@@ -13,10 +14,9 @@ namespace CLIPixelEngine.Engine
     /// </summary>
     public async void Update()
     {
-      Engine.camera.Position.x = Engine.entities["player"].Position.y;
-      Engine.camera.Position.y = Engine.entities["player"].Position.x;
-
-
+      Engine.camera.Position.x = Engine.entities["player"][0].Position.y;
+      Engine.camera.Position.y = Engine.entities["player"][0].Position.x;
+      
       await Engine.renderer.Draw();
     }
 
@@ -31,7 +31,6 @@ namespace CLIPixelEngine.Engine
     public bool TryMove(Entity entity, int direction, int distance) //work as intended
     {
       if (Engine.renderer._map.ColPath == "") return true;
-      Engine.logger.Log(" yes\n");
 
       Engine.logger.Log(Engine.renderer._map.ColPath);
 
@@ -41,52 +40,50 @@ namespace CLIPixelEngine.Engine
       int moveX = direction == 1 ? 1 : 0 + direction == 3 ? -1 : 0;
 
       Vector2Int move = new Vector2Int(distance * moveX, distance * moveY);
+      
+      bool u0 = IsOOB(entity,move,new Vector2Int(0,0),collisionTexture);
+      bool u1 = IsOOB(entity,move,new Vector2Int(0,3),collisionTexture);
+      bool u2 = IsOOB(entity,move,new Vector2Int(1,0),collisionTexture);
+      bool u3 = IsOOB(entity,move,new Vector2Int(0,-1),collisionTexture);
+      bool u4 = IsOOB(entity,move,new Vector2Int(-1,0),collisionTexture);
 
-      bool u0 = entity.Position.y + move.y > 0 &&
-                entity.Position.y + move.y < collisionTexture.Height &&
-                entity.Position.x + move.x > 0 &&
-                entity.Position.x + move.x < collisionTexture.Width;
-      bool u1 = entity.Position.y + move.y + 3 > 0 &&
-                entity.Position.y + move.y + 3 < collisionTexture.Height &&
-                entity.Position.x + move.x > 0 &&
-                entity.Position.x + move.x < collisionTexture.Width;
-      bool u2 = entity.Position.y + move.y > 0 &&
-                entity.Position.y + move.y < collisionTexture.Height &&
-                entity.Position.x + move.x + 1 > 0 &&
-                entity.Position.x + move.x + 1 < collisionTexture.Width;
-      bool u3 = entity.Position.y + move.y - 1 > 0 &&
-                entity.Position.y + move.y - 1 < collisionTexture.Height &&
-                entity.Position.x + move.x > 0 &&
-                entity.Position.x + move.x < collisionTexture.Width;
-      bool u4 = entity.Position.y + move.y > 0 &&
-                entity.Position.y + move.y < collisionTexture.Height &&
-                entity.Position.x + move.x - 1 > 0 &&
-                entity.Position.x + move.x - 1 < collisionTexture.Width;
-
-
-      Engine.logger.Log("-> Sampling\n");
-      int s0 = u0 ? collisionTexture.GetPixel(entity.Position.x + move.x, entity.Position.y + move.y).R : 0;
-      int s1 = u1 ? collisionTexture.GetPixel(entity.Position.x + move.x, entity.Position.y + move.y + 3).R : 0;
-      int s2 = u2 ? collisionTexture.GetPixel(entity.Position.x + move.x + 1, entity.Position.y + move.y).R : 0;
-      int s3 = u3 ? collisionTexture.GetPixel(entity.Position.x + move.x, entity.Position.y + move.y - 1).R : 0;
-      int s4 = u4 ? collisionTexture.GetPixel(entity.Position.x + move.x - 1, entity.Position.y + move.y).R : 0;
+      int s0 = u0 ? Collide(entity,move,new Vector2Int(-1, 0), collisionTexture) : 0;
+      int s1 = u1 ? Collide(entity,move,new Vector2Int(0,3),collisionTexture) : 0;
+      int s2 = u2 ? Collide(entity,move,new Vector2Int(1,0),collisionTexture) : 0;
+      int s3 = u3 ? Collide(entity,move,new Vector2Int(0,-1),collisionTexture) : 0;
+      int s4 = u4 ? Collide(entity,move,new Vector2Int(-1,0),collisionTexture) : 0;
       int sample = s0 + s1 + s2 + s3 + s4;
-
-      Engine.logger.Log((sample == 0).ToString() + "\n");
+      
       return sample == 0;
     }
-    
-    public bool IsTouchingEnemy(Dictionary<string, Entity> entity)
+
+    public bool IsOOB (Entity entity,Vector2Int move,Vector2Int add,Bitmap col)
     {
-      Vector2Int character = entity.Values.ElementAt(0).Position;
+      return entity.Position.y + move.y > 0 &&
+             entity.Position.y + move.y < col.Height &&
+             entity.Position.x + move.x > 0 &&
+             entity.Position.x + move.x < col.Width;
+    }
 
-      for (int i = 1; i < entity.Count; i++)
+    public int Collide(Entity entity, Vector2Int move, Vector2Int add, Bitmap col)
+    {
+      return col.GetPixel(entity.Position.x + move.x + add.x, entity.Position.y + move.y + add.y).R;
+    }
+
+    public bool CollidWithType(Entity entity, List<string> types,int dir,int dist)
+    {
+      int moveY = dir == 2 ? 1 : 0 + dir == 0 ? -1 : 0;
+      int moveX = dir == 1 ? 1 : 0 + dir == 3 ? -1 : 0;
+      Vector2Int move = new Vector2Int(dist * moveX, dist * moveY);
+      
+      foreach (var type in types)
       {
-        int x = entity.ElementAt(i).Value.Position.x;
-        int y = entity.ElementAt(i).Value.Position.y;
-        
+        foreach (var entity2 in Engine.entities[type])
+        {
+          Vector2Int entityPos = new Vector2Int(entity.Position.x + move.x, entity.Position.y + move.y);
+          if (Calc.Distance(entityPos, entity2.Position) < 4) return true;
+        }
       }
-
       return false;
     }
   }

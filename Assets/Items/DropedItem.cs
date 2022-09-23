@@ -9,6 +9,6 @@ public class DropedItem : Entity
     public DropedItem(Equipment equipment)
     {
         item = equipment;
-        Position = Engine.entities["player"].Position;
+        Position = Engine.entities["player"][0].Position;
     }
 }
