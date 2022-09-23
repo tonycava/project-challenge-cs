@@ -2,16 +2,16 @@
 
 namespace Game.EntityHandler.Items.Armors;
 
-public class helmet : Equipment
+public class Leggins : Equipment
 {
-    public override Bitmap sprite
+    public Bitmap sprite
     {
-        get { return new Bitmap("./Assets/Items/Armors/helmet.png"); }
+        get { return new Bitmap("./Assets/Items/Armors/Leggins.png"); }
     }
     public int damage_bonus { get {return 5;} }
     public int defense_bonus { get {return 5;} }
 
-    public helmet()
+    public Leggins()
     {
 
     }

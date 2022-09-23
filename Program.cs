@@ -1,4 +1,8 @@
 using CLIPixelEngine.Engine;
+using Game.EntityHandler;
+using Game.EntityHandler.Items;
+using Game.EntityHandler.Items.Rings;
+using Game.EntityHandler.Menu;
 
 namespace Project_CS
 {
