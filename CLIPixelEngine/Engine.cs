@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
@@ -11,6 +12,8 @@ namespace CLIPixelEngine.Engine
   {
     public static MessageBus bus = new MessageBus();
     public static Dictionary<string, List<Entity>> entities = new Dictionary<string, List<Entity>>();
+    public static Dictionary<string, Overlay> overlays = new Dictionary<string, Overlay>();
+    public static List<string> activeOverlays = new List<string>();
     public static Renderer renderer = new Renderer();
     public static Camera camera = new Camera();
     public static Logic logicEngine = new Logic();
@@ -23,6 +26,7 @@ namespace CLIPixelEngine.Engine
     {
       logger.CreateLogFile();
 
+      overlays["main menu"] = new Overlay("main menu","./Assets/Scene/StartMenu.png");
       camera.Fov = new Vector2Int(20, 42);
 
       renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
@@ -32,6 +36,8 @@ namespace CLIPixelEngine.Engine
       entities["player"] = new List<Entity>();
       entities["enemy"] = new List<Entity>();
       
+      activeOverlays.Add("main menu");
+
       entities["player"].Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png"));
       entities["enemy"].Add(new Entity(new Vector2Int(70, 90) , "Blubble.png"));
 
