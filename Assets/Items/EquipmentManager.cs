@@ -22,9 +22,9 @@ public class EquipmentManager
         Register(id++, new IceRing());
     }
 
-    public void Register(uint equipementId, Equipment equipment)
+    public void Register(uint equipmentId, Equipment equipment)
     {
-        equipment.id = equipementId;
-        equipments.Add(equipementId, equipment);
+        equipment.id = equipmentId;
+        equipments.Add(equipmentId, equipment);
     }
 }

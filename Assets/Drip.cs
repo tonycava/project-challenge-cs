@@ -1,6 +1,6 @@
 namespace Game.EntityHandler
 {
-    public class Inventory
+    public class Drip
     {
         public uint head { get; set; }
         public uint uBody { get; set; }

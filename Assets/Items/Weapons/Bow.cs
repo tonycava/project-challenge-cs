@@ -4,7 +4,7 @@ namespace Game.EntityHandler.Items.Weapons;
 
 public class Bow : Equipment
 {
-    public override Bitmap sprite
+    public Bitmap sprite
     {
         get { return new Bitmap("./Assets/Items/Weapons/Bow.png"); }
     }

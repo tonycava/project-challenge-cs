@@ -4,7 +4,7 @@ namespace Game.EntityHandler.Items.Armors;
 
 public class Boots : Equipment
 {
-    public override Bitmap sprite
+    public Bitmap sprite
     {
         get { return new Bitmap("./Assets/Items/Armors/Boots.png"); }
     }
