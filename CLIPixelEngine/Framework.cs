@@ -83,10 +83,20 @@ namespace CLIPixelEngine.Engine
       }
     }
 
+    /// <summary>
+    /// Render message handler
+    /// </summary>
+    /// <param name="action">action to do</param>
+    /// <param name="value">value of action</param>
     public void RenderHandler(Actions action, string value)
     {
     }
 
+    /// <summary>
+    /// Dialogue message handler
+    /// </summary>
+    /// <param name="action">action to do</param>
+    /// <param name="value">value of action</param>
     public void DialogueHandler(Actions action, string value)
     {
     }

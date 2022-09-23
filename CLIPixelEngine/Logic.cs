@@ -54,11 +54,19 @@ namespace CLIPixelEngine.Engine
       int s4 = u4 ? Collide(entity,move,new Vector2Int(-1,0),collisionTexture) : 0;
       int sample = s0 + s1 + s2 + s3 + s4;
       
-      Engine.logger.Log("Collid \n");
+      Engine.logger.Log("Collide \n");
       
       return sample == 0;
     }
 
+    /// <summary>
+    /// check if entity is out of bound
+    /// </summary>
+    /// <param name="entity">the entity to check</param>
+    /// <param name="move">the vector of movement</param>
+    /// <param name="add">offset of the check</param>
+    /// <param name="col">the map collider</param>
+    /// <returns></returns>
     public bool IsOOB (Entity entity,Vector2Int move,Vector2Int add,Bitmap col)
     {
       return entity.Position.y + move.y > 0 &&
@@ -67,12 +75,28 @@ namespace CLIPixelEngine.Engine
                entity.Position.x + move.x < col.Width;
     }
 
+    /// <summary>
+    /// check if the given entity is collinding with the current map
+    /// </summary>
+    /// <param name="entity">the entity to check</param>
+    /// <param name="move">the vector of movement</param>
+    /// <param name="add">offset of the check</param>
+    /// <param name="col">the map collider</param>
+    /// <returns></returns>
     public int Collide(Entity entity, Vector2Int move, Vector2Int add, Bitmap col)
     {
       return col.GetPixel(entity.Position.x + move.x + add.x, entity.Position.y + move.y + add.y).R;
     }
 
-    public Entity CollideWithType(Entity entity, List<string> types,int dir,int dist)
+    /// <summary>
+    /// Return the entity in the given types the given entity collide with
+    /// </summary>
+    /// <param name="entity">entity to check colision</param>
+    /// <param name="types">types of entity to collide with ( "enemy","item" )</param>
+    /// <param name="dir">the direction of the movement</param>
+    /// <param name="dist">the distance traveled</param>
+    /// <returns>collided entity</returns>
+    public Entity CollideWithType(Entity entity, List<string> types,int dir = 0,int dist = 0)
     {
       int moveY = dir == 2 ? 1 : 0 + dir == 0 ? -1 : 0;
       int moveX = dir == 1 ? 1 : 0 + dir == 3 ? -1 : 0;

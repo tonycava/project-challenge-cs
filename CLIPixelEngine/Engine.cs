@@ -23,6 +23,9 @@ namespace CLIPixelEngine.Engine
     public static Logger logger = new Logger();
 
 
+    /// <summary>
+    /// start the engine and contained the required setup to start the game
+    /// </summary>
     public static void StartEngine()
     {
       //setup
