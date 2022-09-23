@@ -41,9 +41,6 @@
     <None Remove="Assets\Maps\BigDebugMap\collision.png" />
     <None Remove="Assets\Sprites\Blubble.png" />
     <None Remove="Assets\Scene\startGame.png" />
-    <EmbeddedResource Include="Assets\Scene\startGame.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Remove="Assets\Scene\New Piskel.png" />
     <EmbeddedResource Remove="Log\**" />
   </ItemGroup>
@@ -54,6 +51,10 @@
 
   <ItemGroup>
     <None Remove="Assets\map.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Maps\BigDebugMap\collision.png" />
   </ItemGroup>
 
   <ItemGroup>

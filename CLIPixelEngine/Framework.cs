@@ -31,9 +31,11 @@ namespace CLIPixelEngine.Engine
           Engine.logger.Log("Key Z was pressed\n");
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 0, 2))
           {
-            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
-              , new List<string>() {"enemy"}, 2, 2))
+            Engine.logger.Log("can move up\n");
+            if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 0, 2) == null)
             {
+              Engine.logger.Log("move up\n");
               Engine.entities["player"][0].Position.y -= 2;
               Engine.entities["player"][0].Rotation = 0;
             }
@@ -44,8 +46,8 @@ namespace CLIPixelEngine.Engine
           Engine.logger.Log("Key D was pressed\n");
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 1, 2))
           {
-            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
-              , new List<string>() {"enemy"}, 2, 2))
+            if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 2, 2)== null)
             {
               Engine.entities["player"][0].Position.x += 2;
               Engine.entities["player"][0].Rotation = 1;
@@ -57,10 +59,10 @@ namespace CLIPixelEngine.Engine
           Engine.logger.Log("Key S was pressed\n");
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 2, 2))
           {
-            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
-              , new List<string>() {"enemy"}, 2, 2))
+            if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 2, 2)== null)
             {
-              Engine.entities["player"][0].Position.y -= 2;
+              Engine.entities["player"][0].Position.y += 2;
               Engine.entities["player"][0].Rotation = 2;
             }
           }
@@ -70,8 +72,8 @@ namespace CLIPixelEngine.Engine
           Engine.logger.Log("Key Q was pressed\n");
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 3, 2))
           {
-            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
-              , new List<string>() {"enemy"}, 2, 2))
+            if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 3, 2)== null)
             {
               Engine.entities["player"][0].Position.x -= 2;
               Engine.entities["player"][0].Rotation = 3;
@@ -81,10 +83,20 @@ namespace CLIPixelEngine.Engine
       }
     }
 
+    /// <summary>
+    /// Render message handler
+    /// </summary>
+    /// <param name="action">action to do</param>
+    /// <param name="value">value of action</param>
     public void RenderHandler(Actions action, string value)
     {
     }
 
+    /// <summary>
+    /// Dialogue message handler
+    /// </summary>
+    /// <param name="action">action to do</param>
+    /// <param name="value">value of action</param>
     public void DialogueHandler(Actions action, string value)
     {
     }
@@ -109,7 +121,11 @@ namespace CLIPixelEngine.Engine
       do
       {
         Message message = Engine.bus.Mqueue.Dequeue();
-
+        if (Engine.activeOverlays.Contains("main menu"))
+        {
+          if (message.Type == ActionType.INPUT) Engine.activeOverlays.Remove("main menu");
+          continue;
+        }
         switch (message.Type)
         {
           case ActionType.INPUT:

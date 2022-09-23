@@ -26,7 +26,6 @@ namespace CLIPixelEngine.Engine
 
     private string _frame;
 
-
     public bool IsInCombat;
     public int Life = 90;
 
@@ -105,14 +104,18 @@ namespace CLIPixelEngine.Engine
       _startAtY = _startAtY < 0 ? 0 : _startAtY;
       _endAtY = _startAtY == 0 ? _startAtY + Engine.camera.Fov.y * 2 : _endAtY;
 
+      DrawOverlay(Map, _startAtX, _startAtY);
 
-      for (int x = _startAtX; x < _endAtX; x++)
+
+
+      for (int y = _startAtX; y < _endAtX; y++)
       {
-        for (int y = _startAtY; y < _endAtY; y++)
+        for (int x = _startAtY; x < _endAtY; x++)
         {
-          byte r = Map.GetPixel(y, x).R;
-          byte g = Map.GetPixel(y, x).G;
-          byte b = Map.GetPixel(y, x).B;
+
+          byte r = Map.GetPixel(x, y).R;
+          byte g = Map.GetPixel(x, y).G;
+          byte b = Map.GetPixel(x, y).B;
 
           _frame += "\x1b[48;2;" + r + ";" + g + ";" + b + "m  ";
         }
@@ -120,16 +123,13 @@ namespace CLIPixelEngine.Engine
         _frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
 
-      // Console.Clear();
       Console.Write(_frame);
-      
-      Console.WriteLine(IsInCombat);
-
       return Task.CompletedTask;
     }
-    
-    
+
+
     private bool _invertX = false;
+
     /// <summary>
     /// Draw all entities that are present in the Engine.entities list
     /// </summary>
@@ -140,11 +140,16 @@ namespace CLIPixelEngine.Engine
       {
         foreach (var entity in list.Value)
         {
-          DrawEntity(map,entity);
+          DrawEntity(map, entity);
         }
       }
     }
 
+    /// <summary>
+    /// draw the given entity on the map
+    /// </summary>
+    /// <param name="map">current map</param>
+    /// <param name="entity">the entity to draw</param>
     public void DrawEntity(Bitmap map, Entity entity)
     {
       for (int x = 0; x < 8; x++)
@@ -153,6 +158,11 @@ namespace CLIPixelEngine.Engine
         {
           _invertX = entity.Rotation == 3 ? true : _invertX;
           _invertX = entity.Rotation == 1 ? false : _invertX;
+
+          if (entity != Engine.entities["player"][0])
+          {
+            Engine.logger.Log("blubber rotation = " + entity.Rotation + "\n");
+          }
 
           //Check if pixel is OOB
           if (entity.Position.x - 4 + x < _map.Size.x
@@ -164,8 +174,34 @@ namespace CLIPixelEngine.Engine
             if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
             {
               map.SetPixel(entity.Position.x - 4 + x
-                ,entity.Position.y - 3 + y
-                ,spriteColor);
+                , entity.Position.y - 3 + y
+                , spriteColor);
+            }
+          }
+        }
+      }
+    }
+
+    /// <summary>
+    /// draw the current overlay
+    /// </summary>
+    /// <param name="map">the current map</param>
+    /// <param name="startX">start of the camera x position</param>
+    /// <param name="startY">start of the camera y position</param>
+    public void DrawOverlay(Bitmap map, int startX, int startY)
+    {
+      Bitmap overlay;
+      foreach (var overlayName in Engine.activeOverlays)
+      {
+        overlay = Engine.overlays[overlayName].Image;
+        for (int y = 0; y < Engine.camera.Fov.x * 2; y++)
+        {
+          for (int x = 0; x < Engine.camera.Fov.y * 2; x++)
+          {
+            Color spriteColor = overlay.GetPixel(x, y);
+            if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+            {
+              map.SetPixel(startY + x, startX + y, spriteColor);
             }
           }
         }
