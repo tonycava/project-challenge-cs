@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
@@ -28,43 +29,53 @@ namespace CLIPixelEngine.Engine
       {
         case "Z":
           Engine.logger.Log("Key Z was pressed\n");
-          if (Engine.logicEngine.TryMove(Engine.entities["player"], 0, 2))
+          if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 0, 2))
           {
-            Engine.entities["player"].Position.y -= 2;
-            Engine.entities["player"].Rotation = 0;
+            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 2, 2))
+            {
+              Engine.entities["player"][0].Position.y -= 2;
+              Engine.entities["player"][0].Rotation = 0;
+            }
           }
-
           break;
+        
         case "D":
           Engine.logger.Log("Key D was pressed\n");
-          if (Engine.logicEngine.TryMove(Engine.entities["player"], 1, 2))
+          if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 1, 2))
           {
-            Engine.entities["player"].Position.x += 2;
-            Engine.entities["player"].Rotation = 1;
+            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 2, 2))
+            {
+              Engine.entities["player"][0].Position.x += 2;
+              Engine.entities["player"][0].Rotation = 1;
+            }
           }
-
           break;
+        
         case "S":
           Engine.logger.Log("Key S was pressed\n");
-          if (Engine.logicEngine.TryMove(Engine.entities["player"], 2, 2))
+          if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 2, 2))
           {
-            if (Engine.logicEngine.IsTouchingEnemy(Engine.entities))
+            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 2, 2))
             {
-              Engine.logger.Log("colliding");
+              Engine.entities["player"][0].Position.y -= 2;
+              Engine.entities["player"][0].Rotation = 2;
             }
-
-
-            Engine.entities["player"].Rotation = 2;
-            Engine.entities["player"].Position.y += 2;
           }
-
           break;
+        
         case "Q":
           Engine.logger.Log("Key Q was pressed\n");
-          if (Engine.logicEngine.TryMove(Engine.entities["player"], 3, 2))
+          if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 3, 2))
           {
-            Engine.entities["player"].Position.x -= 2;
-            Engine.entities["player"].Rotation = 3;
+            if (Engine.logicEngine.CollidWithType(Engine.entities["player"][0]
+              , new List<string>() {"enemy"}, 2, 2))
+            {
+              Engine.entities["player"][0].Position.x -= 2;
+              Engine.entities["player"][0].Rotation = 3;
+            }
           }
           break;
       }
