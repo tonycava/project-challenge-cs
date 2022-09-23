@@ -25,16 +25,14 @@ namespace CLIPixelEngine.Engine
     private int _endAtY;
 
     private string _frame;
-    
-    public bool IsInCombat;
-    public int Life = 90;
+
 
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool GetConsoleMode(IntPtr handle, out int mode);
-
+    
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern IntPtr GetStdHandle(int handle);
 
@@ -54,13 +52,11 @@ namespace CLIPixelEngine.Engine
     /// <param name="pathToMap">the name of the map directory</param>
     /// <returns>return the bitmap of the map</returns>
     static Bitmap GetMap(string pathToMap) => new Bitmap(pathToMap);
-
     /// <summary>
     /// Select the map to use
     /// </summary>
     /// <param name="map">name of the map directory</param>
     public void SetMap(Map map) => _map = map;
-
     /// <summary>
     /// set camera to a new position
     /// </summary>
@@ -73,6 +69,7 @@ namespace CLIPixelEngine.Engine
     /// <returns></returns>
     public Task Draw()
     {
+      //Console.Clear();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
 
       Bitmap Map = GetMap(_map.Path);
@@ -82,8 +79,7 @@ namespace CLIPixelEngine.Engine
       DrawEntities(Map);
 
       // Clear frame to redraw the new updated map
-
-      Console.CursorTop = 0;
+      Console.CursorTop = -0;
       _frame = "";
 
       _startAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
@@ -103,7 +99,8 @@ namespace CLIPixelEngine.Engine
 
       _startAtY = _startAtY < 0 ? 0 : _startAtY;
       _endAtY = _startAtY == 0 ? _startAtY + Engine.camera.Fov.y * 2 : _endAtY;
-      
+
+
       for (int x = _startAtX; x < _endAtX; x++)
       {
         for (int y = _startAtY; y < _endAtY; y++)
@@ -117,8 +114,10 @@ namespace CLIPixelEngine.Engine
 
         _frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
-      
+
+      //Console.Clear();
       Console.Write(_frame);
+
       return Task.CompletedTask;
     }
 
@@ -126,9 +125,9 @@ namespace CLIPixelEngine.Engine
     /// Draw all entities that are present in the Engine.entities list
     /// </summary>
     /// <param name="Map">the current map</param>
+    
     private bool _invertX = false;
-
-    public void DrawEntities(Bitmap map)
+    public void DrawEntities(Bitmap Map)
     {
       foreach (var entity in Engine.entities)
       {
@@ -136,21 +135,21 @@ namespace CLIPixelEngine.Engine
         {
           for (int y = 0; y < 8; y++)
           {
-            _invertX = entity.Value.Rotation == 3 ? true : _invertX;
-            _invertX = entity.Value.Rotation == 1 ? false : _invertX;
-
+            _invertX = entity.rotation == 3 ? true : _invertX;
+            _invertX = entity.rotation == 1 ? false : _invertX;
+            
             //Check if pixel is OOB
-            if (entity.Value.Position.x - 4 + x < _map.Size.x
-                && entity.Value.Position.y - 4 + y < _map.Size.y
-                && entity.Value.Position.x - 3 + x > 0
-                && entity.Value.Position.y - 3 + y > 0)
+            if (entity.Position.x - 4 + x < _map.Size.x
+                && entity.Position.y - 4 + y < _map.Size.y
+                && entity.Position.x - 3 + x > 0
+                && entity.Position.y - 3 + y > 0)
             {
-              Color spriteColor = entity.Value.Sprite.GetPixel(_invertX ? 7 - x : 0 + x, y);
+              Color spriteColor = entity.Sprite.GetPixel(_invertX ? 7 - x : 0 + x, y);
               if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
               {
-                map.SetPixel(entity.Value.Position.x - 4 + x
-                  , entity.Value.Position.y - 3 + y
-                  , spriteColor);
+                Map.SetPixel(entity.Position.x - 4 + x
+                            ,entity.Position.y - 3 + y
+                            ,  spriteColor);
               }
             }
           }
