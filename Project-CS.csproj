@@ -54,11 +54,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CLIPixelEngine\Log" />
+    <Content Include="Assets\Maps\BigDebugMap\collision.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Maps\BigDebugMap\collision.png" />
+    <Folder Include="CLIPixelEngine\Log" />
   </ItemGroup>
 
 </Project>

@@ -72,7 +72,7 @@ namespace CLIPixelEngine.Engine
       return col.GetPixel(entity.Position.x + move.x + add.x, entity.Position.y + move.y + add.y).R;
     }
 
-    public bool CollidWithType(Entity entity, List<string> types,int dir,int dist)
+    public Entity CollideWithType(Entity entity, List<string> types,int dir,int dist)
     {
       int moveY = dir == 2 ? 1 : 0 + dir == 0 ? -1 : 0;
       int moveX = dir == 1 ? 1 : 0 + dir == 3 ? -1 : 0;
@@ -86,12 +86,11 @@ namespace CLIPixelEngine.Engine
           if (Calc.Distance(entityPos, entity2.Position) < 8)
           {
             Engine.logger.Log("collided with ennemy \n");
-            return true;
+            return entity2;
           }
         }
       }
-
-      return false;
+      return null;
     }
   }
 }

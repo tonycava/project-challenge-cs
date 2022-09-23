@@ -6,6 +6,7 @@ using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 using Game.Maps;
 
+
 namespace CLIPixelEngine.Engine
 {
   public class Engine
@@ -24,17 +25,16 @@ namespace CLIPixelEngine.Engine
 
     public static void StartEngine()
     {
+      //setup
+      Console.Clear();
       logger.CreateLogFile();
-
       overlays["main menu"] = new Overlay("main menu","./Assets/Scene/StartMenu.png");
       camera.Fov = new Vector2Int(20, 42);
-
       renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
-
       renderer.PutCameraAt(new Vector2Int(64, 64));
-
       entities["player"] = new List<Entity>();
       entities["enemy"] = new List<Entity>();
+      entities["items"] = new List<Entity>();
       
       activeOverlays.Add("main menu");
 

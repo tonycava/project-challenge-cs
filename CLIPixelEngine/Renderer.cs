@@ -153,6 +153,11 @@ namespace CLIPixelEngine.Engine
           _invertX = entity.Rotation == 3 ? true : _invertX;
           _invertX = entity.Rotation == 1 ? false : _invertX;
 
+          if (entity != Engine.entities["player"][0])
+          {
+            Engine.logger.Log("blubber rotation = " + entity.Rotation +"\n");
+          }
+          
           //Check if pixel is OOB
           if (entity.Position.x - 4 + x < _map.Size.x
               && entity.Position.y - 4 + y < _map.Size.y
