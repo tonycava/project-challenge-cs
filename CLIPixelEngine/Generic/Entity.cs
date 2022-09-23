@@ -6,23 +6,25 @@ namespace CLIPixelEngine.Engine.Generic
   {
     public Vector2Int Position;
     public Bitmap Sprite;
-    public Scripts Script;
-    public int rotation;
+
+    public int Id;
+    
+    public int Rotation;
 
     public Entity()
     {
       Position = new Vector2Int(0, 0);
       Sprite = new Bitmap("./Assets/Sprites/debugSprite.png");
-      Script = null;
-      rotation = 0;
+      Rotation = 0;
+      Id = 0;
     }
 
-    public Entity(Vector2Int position, string name, Scripts script)
+    public Entity(Vector2Int position, string path, int id)
     {
       Position = new Vector2Int(position.x, position.y);
-      Sprite = new Bitmap("./Assets/Sprites/" + name);
-      Script = null;
-      rotation = 0;
+      Sprite = new Bitmap("./Assets/Sprites/" + path);
+      Rotation = 0;
+      Id = id;
     }
   }
 }

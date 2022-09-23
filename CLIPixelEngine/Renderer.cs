@@ -27,12 +27,15 @@ namespace CLIPixelEngine.Engine
     private string _frame;
 
 
+    public bool IsInCombat;
+    public int Life = 90;
+
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool GetConsoleMode(IntPtr handle, out int mode);
-    
+
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern IntPtr GetStdHandle(int handle);
 
@@ -52,11 +55,13 @@ namespace CLIPixelEngine.Engine
     /// <param name="pathToMap">the name of the map directory</param>
     /// <returns>return the bitmap of the map</returns>
     static Bitmap GetMap(string pathToMap) => new Bitmap(pathToMap);
+
     /// <summary>
     /// Select the map to use
     /// </summary>
     /// <param name="map">name of the map directory</param>
     public void SetMap(Map map) => _map = map;
+
     /// <summary>
     /// set camera to a new position
     /// </summary>
@@ -114,8 +119,10 @@ namespace CLIPixelEngine.Engine
         _frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
 
-      //Console.Clear();
+      // Console.Clear();
       Console.Write(_frame);
+      
+      Console.WriteLine(IsInCombat);
 
       return Task.CompletedTask;
     }
@@ -124,9 +131,9 @@ namespace CLIPixelEngine.Engine
     /// Draw all entities that are present in the Engine.entities list
     /// </summary>
     /// <param name="Map">the current map</param>
-    
     private bool _invertX = false;
-    public void DrawEntities(Bitmap Map)
+
+    public void DrawEntities(Bitmap map)
     {
       foreach (var entity in Engine.entities)
       {
@@ -134,21 +141,21 @@ namespace CLIPixelEngine.Engine
         {
           for (int y = 0; y < 8; y++)
           {
-            _invertX = entity.rotation == 3 ? true : _invertX;
-            _invertX = entity.rotation == 1 ? false : _invertX;
-            
+            _invertX = entity.Value.Rotation == 3 ? true : _invertX;
+            _invertX = entity.Value.Rotation == 1 ? false : _invertX;
+
             //Check if pixel is OOB
-            if (entity.Position.x - 4 + x < _map.Size.x
-                && entity.Position.y - 4 + y < _map.Size.y
-                && entity.Position.x - 3 + x > 0
-                && entity.Position.y - 3 + y > 0)
+            if (entity.Value.Position.x - 4 + x < _map.Size.x
+                && entity.Value.Position.y - 4 + y < _map.Size.y
+                && entity.Value.Position.x - 3 + x > 0
+                && entity.Value.Position.y - 3 + y > 0)
             {
-              Color spriteColor = entity.Sprite.GetPixel(_invertX ? 7 - x : 0 + x, y);
+              Color spriteColor = entity.Value.Sprite.GetPixel(_invertX ? 7 - x : 0 + x, y);
               if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
               {
-                Map.SetPixel(entity.Position.x - 4 + x
-                            ,entity.Position.y - 3 + y
-                            ,  spriteColor);
+                map.SetPixel(entity.Value.Position.x - 4 + x
+                  , entity.Value.Position.y - 3 + y
+                  , spriteColor);
               }
             }
           }
