@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
+using Game.EntityHandler.Scene;
 using Game.Maps;
 
 
@@ -20,7 +21,10 @@ namespace CLIPixelEngine.Engine
 
     public static void StartEngine()
     {
+      Console.Clear();
       logger.CreateLogFile();
+      
+      StartGame.StartMenu();
 
       camera.Fov = new Vector2Int(20, 42);
 
@@ -29,8 +33,7 @@ namespace CLIPixelEngine.Engine
       renderer.PutCameraAt(new Vector2Int(64, 64));
 
       entities.Add("player", new Entity(new Vector2Int(64, 64), "purple_warrior.png", 0));
-
-
+      
       entities.Add("enemy", new Entity(new Vector2Int(70, 90), "Blubble.png", 1));
 
       renderer.Draw();

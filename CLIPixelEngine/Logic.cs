@@ -75,8 +75,7 @@ namespace CLIPixelEngine.Engine
       Engine.logger.Log((sample == 0).ToString() + "\n");
       return sample == 0;
     }
-
-
+    
     public bool IsTouchingEnemy(Dictionary<string, Entity> entity)
     {
       Vector2Int character = entity.Values.ElementAt(0).Position;
@@ -85,10 +84,7 @@ namespace CLIPixelEngine.Engine
       {
         int x = entity.ElementAt(i).Value.Position.x;
         int y = entity.ElementAt(i).Value.Position.y;
-
-
-        Console.WriteLine(character.x - x);
-        Console.WriteLine(character.y - y);
+        
       }
 
       return false;

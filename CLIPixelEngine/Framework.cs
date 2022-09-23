@@ -51,7 +51,6 @@ namespace CLIPixelEngine.Engine
             if (Engine.logicEngine.IsTouchingEnemy(Engine.entities))
             {
               Engine.logger.Log("colliding");
-              
             }
 
 
@@ -67,7 +66,6 @@ namespace CLIPixelEngine.Engine
             Engine.entities["player"].Position.x -= 2;
             Engine.entities["player"].Rotation = 3;
           }
-
           break;
       }
     }

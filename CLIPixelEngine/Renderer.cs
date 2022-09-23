@@ -25,8 +25,7 @@ namespace CLIPixelEngine.Engine
     private int _endAtY;
 
     private string _frame;
-
-
+    
     public bool IsInCombat;
     public int Life = 90;
 
@@ -74,7 +73,6 @@ namespace CLIPixelEngine.Engine
     /// <returns></returns>
     public Task Draw()
     {
-      //Console.Clear();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
 
       Bitmap Map = GetMap(_map.Path);
@@ -84,6 +82,8 @@ namespace CLIPixelEngine.Engine
       DrawEntities(Map);
 
       // Clear frame to redraw the new updated map
+
+      Console.CursorTop = 0;
       _frame = "";
 
       _startAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
@@ -103,8 +103,7 @@ namespace CLIPixelEngine.Engine
 
       _startAtY = _startAtY < 0 ? 0 : _startAtY;
       _endAtY = _startAtY == 0 ? _startAtY + Engine.camera.Fov.y * 2 : _endAtY;
-
-
+      
       for (int x = _startAtX; x < _endAtX; x++)
       {
         for (int y = _startAtY; y < _endAtY; y++)
@@ -118,12 +117,8 @@ namespace CLIPixelEngine.Engine
 
         _frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
-
-      // Console.Clear();
-      Console.Write(_frame);
       
-      Console.WriteLine(IsInCombat);
-
+      Console.Write(_frame);
       return Task.CompletedTask;
     }
 

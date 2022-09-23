@@ -16,7 +16,7 @@ namespace Game.EntityHandler.Menu
         public void AddItem(Equipment item)
         {
             inventory[9 - InventorySpace()] = item;
-            Console.WriteLine(InventorySpace());
+            
         }
 
         public int InventorySpace()
@@ -42,7 +42,6 @@ namespace Game.EntityHandler.Menu
             for (int i = 0; i < inventory.Length; i++)
             {
                 if (inventory[i] == null) continue;
-                Console.Write(inventory[i].name);
             }
         }
     }
