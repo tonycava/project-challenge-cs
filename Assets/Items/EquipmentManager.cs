@@ -2,13 +2,13 @@
 
 namespace Game.EntityHandler.Items;
 
-public class EquipementManager
+public class EquipmentManager
 {
-    public static EquipementManager singleton;
+    public static EquipmentManager singleton;
     public Dictionary<uint, Equipment> equipments = new Dictionary<uint, Equipment>();
 
-    public EquipementManager() {
-        if (singleton == null)
+    public EquipmentManager() {
+        if (singleton is not  null)
         {
             singleton = this;
         }
@@ -18,8 +18,8 @@ public class EquipementManager
     public void RegisterAll()
     {
         uint id = 0;
-        Register(id++, new fire_ring());
-        Register(id++, new ice_ring());
+        Register(id++, new FireRing());
+        Register(id++, new IceRing());
     }
 
     public void Register(uint equipementId, Equipment equipment)

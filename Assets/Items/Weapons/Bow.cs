@@ -2,16 +2,16 @@
 
 namespace Game.EntityHandler.Items.Weapons;
 
-public class spear : Equipment
+public class Bow : Equipment
 {
     public override Bitmap sprite
     {
-        get { return new Bitmap("./Assets/Items/Weapons/spear.png"); }
+        get { return new Bitmap("./Assets/Items/Weapons/Bow.png"); }
     }
     public int damage_bonus { get {return 5;} }
     public int defense_bonus { get {return 0;} }
 
-    public spear()
+    public Bow()
     {
 
     }
