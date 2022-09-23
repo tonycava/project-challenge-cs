@@ -79,7 +79,7 @@ namespace CLIPixelEngine.Engine
       DrawEntities(Map);
 
       // Clear frame to redraw the new updated map
-      Console.CursorTop = -0;
+      Console.CursorTop = 0;
       _frame = "";
 
       _startAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
