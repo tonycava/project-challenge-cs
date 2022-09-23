@@ -69,7 +69,7 @@ namespace CLIPixelEngine.Engine
     /// <returns></returns>
     public Task Draw()
     {
-      Console.Clear();
+      //Console.Clear();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
 
       Bitmap Map = GetMap(_map.Path);
@@ -114,7 +114,7 @@ namespace CLIPixelEngine.Engine
         _frame += "\x1b[48;2;" + 0 + ";" + 0 + ";" + 0 + "m\n";
       }
 
-      Console.Clear();
+      //Console.Clear();
       Console.Write(_frame);
 
       return Task.CompletedTask;
