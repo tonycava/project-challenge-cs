@@ -6,15 +6,15 @@ namespace CLIPixelEngine.Engine.Generic
 {
   public class Logger
   {
-    public List<string> text = new List<string>();
+    public int fCount = 0;
 
     /// <summary>
     /// create the log file
     /// </summary>
     public void CreateLogFile()
     {
-      int fCount = Directory.GetFiles("./CLIPixelEngine/Log/", "*", SearchOption.AllDirectories).Length;
-      File.CreateText("./CLIPixelEngine/Log/log_" + (fCount + 1) + ".txt");
+      fCount = Directory.GetFiles("./CLIPixelEngine/Log/", "*", SearchOption.AllDirectories).Length;
+      File.CreateText("./CLIPixelEngine/Log/log_" + (fCount + 1) + ".txt").Close();
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace CLIPixelEngine.Engine.Generic
     /// <param name="line">message to log (add \n) for new line</param>
     public void Log(string line)
     {
-      int fCount = Directory.GetFiles("./CLIPixelEngine/Log/", "*", SearchOption.AllDirectories).Length;
+      fCount = Directory.GetFiles("./CLIPixelEngine/Log/", "*", SearchOption.AllDirectories).Length;
       File.AppendAllText("./CLIPixelEngine/Log/log_" + fCount + ".txt",line);
     }
   }

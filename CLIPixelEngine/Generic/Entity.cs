@@ -8,6 +8,7 @@ namespace CLIPixelEngine.Engine.Generic
     public Bitmap Sprite;
     
     public int Rotation;
+    public bool invertX = false;
 
     public Entity()
     {

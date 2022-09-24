@@ -127,9 +127,6 @@ namespace CLIPixelEngine.Engine
       return Task.CompletedTask;
     }
 
-
-    private bool _invertX = false;
-
     /// <summary>
     /// Draw all entities that are present in the Engine.entities list
     /// </summary>
@@ -156,13 +153,8 @@ namespace CLIPixelEngine.Engine
       {
         for (int y = 0; y < 8; y++)
         {
-          _invertX = entity.Rotation == 3 ? true : _invertX;
-          _invertX = entity.Rotation == 1 ? false : _invertX;
-
-          if (entity != Engine.entities["player"][0])
-          {
-            Engine.logger.Log("blubber rotation = " + entity.Rotation + "\n");
-          }
+          entity.invertX = entity.Rotation == 3 ? true : entity.invertX;
+          entity.invertX = entity.Rotation == 1 ? false : entity.invertX;
 
           //Check if pixel is OOB
           if (entity.Position.x - 4 + x < _map.Size.x
@@ -170,7 +162,7 @@ namespace CLIPixelEngine.Engine
               && entity.Position.x - 3 + x > 0
               && entity.Position.y - 3 + y > 0)
           {
-            Color spriteColor = entity.Sprite.GetPixel(_invertX ? 7 - x : 0 + x, y);
+            Color spriteColor = entity.Sprite.GetPixel(entity.invertX ? 7 - x : 0 + x, y);
             if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
             {
               map.SetPixel(entity.Position.x - 4 + x

@@ -106,14 +106,18 @@ namespace CLIPixelEngine.Engine
       {
         foreach (var entity2 in Engine.entities[type])
         {
-          Vector2Int entityPos = new Vector2Int(entity.Position.x + move.x, entity.Position.y + move.y);
-          if (Calc.Distance(entityPos, entity2.Position) < 8)
+          Vector2Int newPos = new Vector2Int(entity.Position.x + move.x, entity.Position.y + move.y);
+          double distanceToEntity2 = Calc.DistanceToBox(newPos, entity2.Position,new Vector2Int(4,4));
+          if (distanceToEntity2 < 0)
           {
+            Engine.logger.Log("" + distanceToEntity2 + "\n");
             Engine.logger.Log("collided with ennemy \n");
             return entity2;
           }
+          Engine.logger.Log("" + distanceToEntity2 + "\n");
         }
       }
+      
       return null;
     }
   }

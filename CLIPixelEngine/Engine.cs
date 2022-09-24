@@ -42,7 +42,7 @@ namespace CLIPixelEngine.Engine
       activeOverlays.Add("main menu");
 
       entities["player"].Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png"));
-      entities["enemy"].Add(new Entity(new Vector2Int(70, 90) , "Blubble.png"));
+      entities["enemy"].Add(new Entity(new Vector2Int(64, 100) , "Blubble.png"));
 
       Console.Clear();
       renderer.Draw();
