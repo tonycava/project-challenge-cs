@@ -7,42 +7,43 @@ namespace Game.EntityHandler.Menu
 {
     public class InventoryMenu
     {
-        public Equipment[] inventory;
+        private const int _inventorySpace = 9;
+        public Equipment[] Inventory;
         
         public InventoryMenu()
         {
-            inventory = new Equipment[9];
+            Inventory = new Equipment[_inventorySpace];
         }
 
         public void AddItem(Equipment item)
         {
-            inventory[9 - InventorySpace()] = item;
+            Inventory[_inventorySpace - InventorySpace()] = item;
             
         }
 
         public int InventorySpace()
         {
-            int total = inventory.Length;
-            for (int i = 0; i < inventory.Length; i++)
+            int totalSpace = Inventory.Length;
+            for (int i = 0; i < Inventory.Length; i++)
             {
-                if (inventory[i] != null) total--;
+                if (Inventory[i] != null) totalSpace--;
             }
-            return total;
+            return totalSpace;
         }
 
         public void RemoveItem(Equipment item)
         {
-            for (int i = 0; i < inventory.Length; i++)
+            for (int i = 0; i < Inventory.Length; i++)
             {
-                if (inventory[i] == item) inventory[i] = null;
+                if (Inventory[i] == item) Inventory[i] = null;
             }
         }
 
         public void PrintArray()
         {
-            for (int i = 0; i < inventory.Length; i++)
+            for (int i = 0; i < Inventory.Length; i++)
             {
-                if (inventory[i] == null) continue;
+                if (Inventory[i] == null) continue;
             }
         }
     }

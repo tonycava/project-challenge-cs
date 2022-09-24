@@ -96,7 +96,7 @@ namespace CLIPixelEngine.Engine
     /// <param name="dir">the direction of the movement</param>
     /// <param name="dist">the distance traveled</param>
     /// <returns>collided entity</returns>
-    public Entity CollideWithType(Entity entity, List<string> types,int dir = 0,int dist = 0)
+    public Entity CollideWithType(Entity character, List<string> types,int dir = 0,int dist = 0)
     {
       int moveY = dir == 2 ? 1 : 0 + dir == 0 ? -1 : 0;
       int moveX = dir == 1 ? 1 : 0 + dir == 3 ? -1 : 0;
@@ -104,16 +104,26 @@ namespace CLIPixelEngine.Engine
       
       foreach (var type in types)
       {
-        foreach (var entity2 in Engine.entities[type])
+        foreach (var entity in Engine.entities[type])
         {
-          Vector2Int newPos = new Vector2Int(entity.Position.x + move.x, entity.Position.y + move.y);
-          double distanceToEntity2 = Calc.DistanceToBox(newPos, entity2.Position,new Vector2Int(4,4));
-          if (distanceToEntity2 < 0)
+          Vector2Int newPos = new Vector2Int(character.Position.x + move.x, character.Position.y + move.y);
+          double distanceToEntity2 = Calc.DistanceToBox(newPos, entity.Position,new Vector2Int(4,4));
+          
+          if (distanceToEntity2 <= 0)
           {
-            Engine.logger.Log("" + distanceToEntity2 + "\n");
-            Engine.logger.Log("collided with ennemy \n");
-            return entity2;
+
+            character.Script.DealDamage(character.Script.Damage, character);
+            entity.Script.DealDamage(Engine.entities["player"][0].Script.Damage, entity);
+            
+            Console.WriteLine($"You hit the blubble and the monster hit you and you now have {character.Script.Life} HP");
+            Console.WriteLine("If you want to fight continue in the direction of the monster");
+            Console.WriteLine("Otherwise leave in the opposite direction ");
+            Thread.Sleep(2000);
+            // Console.WriteLine("Or use an heal potion using the key U !");
+
+            return entity;
           }
+          
           Engine.logger.Log("" + distanceToEntity2 + "\n");
         }
       }

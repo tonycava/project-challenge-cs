@@ -26,9 +26,6 @@ namespace CLIPixelEngine.Engine
 
     private string _frame;
 
-    public bool IsInCombat;
-    public int Life = 90;
-
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
 
@@ -73,7 +70,6 @@ namespace CLIPixelEngine.Engine
     /// <returns></returns>
     public Task Draw()
     {
-      //Console.Clear();
       ConsoleHelper.SetCurrentFont("Consolas", 10);
 
       Bitmap Map = GetMap(_map.Path);
@@ -84,6 +80,8 @@ namespace CLIPixelEngine.Engine
 
       // Clear frame to redraw the new updated map
       Console.CursorTop = 0;
+      Console.Clear();
+
       _frame = "";
 
       _startAtX = Engine.camera.Position.x - Engine.camera.Fov.x;
@@ -105,9 +103,7 @@ namespace CLIPixelEngine.Engine
       _endAtY = _startAtY == 0 ? _startAtY + Engine.camera.Fov.y * 2 : _endAtY;
 
       DrawOverlay(Map, _startAtX, _startAtY);
-
-
-
+      
       for (int y = _startAtX; y < _endAtX; y++)
       {
         for (int x = _startAtY; x < _endAtY; x++)

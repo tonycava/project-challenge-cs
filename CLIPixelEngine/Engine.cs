@@ -5,6 +5,7 @@ using System.Linq;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 using Game.Maps;
+using Game.Test;
 
 
 namespace CLIPixelEngine.Engine
@@ -29,23 +30,29 @@ namespace CLIPixelEngine.Engine
     public static void StartEngine()
     {
       //setup
-      Console.Clear();
       logger.CreateLogFile();
-      overlays["main menu"] = new Overlay("main menu","./Assets/Scene/StartMenu.png");
+
+      overlays["main menu"] = new Overlay("main menu", "./Assets/Scene/StartMenu.png");
+
       camera.Fov = new Vector2Int(20, 42);
       renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
       renderer.PutCameraAt(new Vector2Int(64, 64));
+
       entities["player"] = new List<Entity>();
       entities["enemy"] = new List<Entity>();
       entities["items"] = new List<Entity>();
-      
+
       activeOverlays.Add("main menu");
 
-      entities["player"].Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png"));
-      entities["enemy"].Add(new Entity(new Vector2Int(64, 100) , "Blubble.png"));
-
+      entities["player"].Add(new Entity(new Vector2Int(64, 64), "purple_warrior.png", new Character()));
+      entities["enemy"].Add(new Entity(new Vector2Int(64, 100), "Blubble.png", new Blubble()));
+      
       Console.Clear();
+      
       renderer.Draw();
+      
+      Console.Write(entities["player"][0].Script.Life);
+      
       Input.Start();
     }
   }

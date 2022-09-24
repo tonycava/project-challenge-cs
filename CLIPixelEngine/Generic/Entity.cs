@@ -1,4 +1,5 @@
 using System.Drawing;
+using Game.Test;
 
 namespace CLIPixelEngine.Engine.Generic
 {
@@ -6,9 +7,11 @@ namespace CLIPixelEngine.Engine.Generic
   {
     public Vector2Int Position;
     public Bitmap Sprite;
-    
+
     public int Rotation;
     public bool invertX = false;
+
+    public Enemy.EnemyStats Script;
 
     public Entity()
     {
@@ -17,11 +20,12 @@ namespace CLIPixelEngine.Engine.Generic
       Rotation = 0;
     }
 
-    public Entity(Vector2Int position, string path)
+    public Entity(Vector2Int position, string path, Enemy.EnemyStats script)
     {
       Position = new Vector2Int(position.x, position.y);
       Sprite = new Bitmap("./Assets/Sprites/" + path);
       Rotation = 0;
+      Script = script;
     }
   }
 }
