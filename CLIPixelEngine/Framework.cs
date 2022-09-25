@@ -85,13 +85,9 @@ namespace CLIPixelEngine.Engine
 
         case "E":
           Character livingCharacter = (Character) Engine.entities["player"][0];
-          Engine.logger.Log(string.Join("==>", livingCharacter.inventory));
 
           if (Engine.activeOverlays.Contains("inventory")) Engine.activeOverlays.Remove("inventory");
           else Engine.activeOverlays.Add("inventory");
-
-          Engine.renderer.Draw();
-          
           break;
       }
     }

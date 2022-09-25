@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
+using Game.EntityHandler.Items;
 using Game.Maps;
 using Game.Test;
 
@@ -26,6 +27,7 @@ namespace CLIPixelEngine.Engine
     private int _endAtY;
 
     private string _frame;
+    private const int _sizeOfSprite = 8;
 
     [DllImport("kernel32.dll", SetLastError = true)]
     public static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
@@ -145,9 +147,9 @@ namespace CLIPixelEngine.Engine
     /// <param name="entity">the entity to draw</param>
     private void DrawEntity(Bitmap map, Entity entity)
     {
-      for (int x = 0; x < 8; x++)
+      for (int x = 0; x < _sizeOfSprite; x++)
       {
-        for (int y = 0; y < 8; y++)
+        for (int y = 0; y < _sizeOfSprite; y++)
         {
           entity.invertX = entity.Rotation == 3 ? true : entity.invertX;
           entity.invertX = entity.Rotation == 1 ? false : entity.invertX;
@@ -186,35 +188,68 @@ namespace CLIPixelEngine.Engine
           for (int x = 0; x < Engine.camera.Fov.y * 2; x++)
           {
             Color spriteColor = overlay.GetPixel(x, y);
+
             if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
-            {
               map.SetPixel(startY + x, startX + y, spriteColor);
-            }
           }
         }
 
         if (overlayName == "inventory")
         {
-          Engine.logger.Log("in inventory");
           Character livingCharacter = (Character) Engine.entities["player"][0];
+          if (livingCharacter.inventory.Count == 0) continue;
 
-          // if (livingCharacter.inventory.Count == 0) continue;
-          // Bitmap ring = livingCharacter.inventory.ElementAt(0).sprite;
-         Bitmap ring = new Bitmap("./Assets/Items/Rings/Ice_ring.png");
-         
-          for (int x = 0; x < 8; x++)
+          Engine.logger.Log("\n" + string.Join("==>", livingCharacter.inventory + "\n inv"));
+
+          int numberOfRingAlreadyDraw = 0;
+
+
+          foreach (var item in livingCharacter.inventory)
           {
-            for (int y = 0; y < 8; y++)
+            if (item.name.Contains("Ring")) numberOfRingAlreadyDraw += 1;
+            DrawItemInInventory(item, overlay, numberOfRingAlreadyDraw);
+          }
+        }
+      }
+    }
+
+    private void DrawItemInInventory(Equipment equipment, Bitmap overlay, int numberOfRingAlreadyDraw)
+    {
+      Dictionary<uint, int[]> posInInventory = new Dictionary<uint, int[]>
+      {
+        {2, new[] {12, 12}},
+        {3, new[] {12, 12}},
+        {4, new[] {12, 12}},
+        {5, new[] {12, 12}},
+        {6, new[] {12, 12}},
+
+        {7, new[] {12, 12}},
+        {8, new[] {12, 12}},
+        {9, new[] {12, 12}},
+        {10, new[] {12, 12}},
+      };
+
+      Bitmap ring = equipment.sprite;
+      Engine.logger.Log(numberOfRingAlreadyDraw.ToString());
+
+      for (int x = 0; x < _sizeOfSprite; x++)
+      {
+        for (int y = 0; y < _sizeOfSprite; y++)
+        {
+          Color spriteColor = ring.GetPixel(x, y);
+
+          if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+          {
+            if (equipment.name.Contains("Ring"))
             {
-              Color spriteColor = ring.GetPixel(x, y);
-              
-              if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
-              {
-                overlay.SetPixel(24 - 4 + x
-                  , 12 - 4 + y
-                  , spriteColor);
-              }
+              overlay.SetPixel(24 + 9 * numberOfRingAlreadyDraw - 9 - 4 + x
+                , 12 - 4 + y
+                , spriteColor);
+              continue;
             }
+            overlay.SetPixel(posInInventory[equipment.id][0] - 4 + x
+              , posInInventory[equipment.id][1] - 4 + y
+              , spriteColor);
           }
         }
       }

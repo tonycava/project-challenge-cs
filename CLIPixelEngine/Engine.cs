@@ -36,11 +36,11 @@ namespace CLIPixelEngine.Engine
 
       overlays["main menu"] = new Overlay("main menu", "./Assets/Scene/StartMenu.png");
       overlays["inventory"] = new Overlay("inventory", "./Assets/Sprites/Inventory.png");
-      
+
       camera.Fov = new Vector2Int(20, 42);
-      
+
       renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
-      
+
       renderer.PutCameraAt(new Vector2Int(64, 64));
 
       entities["player"] = new List<Entity> {new Character(new Vector2Int(64, 64), "purple_warrior.png")};
@@ -48,10 +48,16 @@ namespace CLIPixelEngine.Engine
       entities["items"] = new List<Entity>();
 
       activeOverlays.Add("main menu");
-      
+
+      Character livingCharacter = (Character) entities["player"][0];
+
+      livingCharacter.inventory.Add((Equipment) EquipmentManager.singleton.getEquipment(1).Clone());
+      livingCharacter.inventory.Add((Equipment) EquipmentManager.singleton.getEquipment(1).Clone());
+      livingCharacter.inventory.Add((Equipment) EquipmentManager.singleton.getEquipment(1).Clone());
+
       Console.Clear();
-      
-      
+
+
       renderer.Draw();
       Input.Start();
     }
