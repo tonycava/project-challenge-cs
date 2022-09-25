@@ -4,15 +4,15 @@ namespace Game.EntityHandler.Items.Weapons;
 
 public class Wand : Equipment
 {
-    public Bitmap sprite
-    {
-        get { return new Bitmap("./Assets/Items/Weapons/Wand.png"); }
-    }
-    public int damage_bonus { get {return 5;} }
-    public int defense_bonus { get {return 0;} }
-
-    public Wand()
-    {
-
-    }
+  public Wand()
+  {
+    sprite = new Bitmap("./Assets/Items/Weapons/Wand.png");
+    damage_bonus = 5;
+    defense_bonus = 0;
+  }
+    
+  public override object Clone()
+  {
+    return new Wand();
+  }
 }

@@ -13,6 +13,7 @@ namespace CLIPixelEngine.Engine.Generic
     /// </summary>
     public void CreateLogFile()
     {
+      Directory.CreateDirectory("./CLIPixelEngine/Log/");
       fCount = Directory.GetFiles("./CLIPixelEngine/Log/", "*", SearchOption.AllDirectories).Length;
       File.CreateText("./CLIPixelEngine/Log/log_" + (fCount + 1) + ".txt").Close();
     }
@@ -24,7 +25,7 @@ namespace CLIPixelEngine.Engine.Generic
     public void Log(string line)
     {
       fCount = Directory.GetFiles("./CLIPixelEngine/Log/", "*", SearchOption.AllDirectories).Length;
-      File.AppendAllText("./CLIPixelEngine/Log/log_" + fCount + ".txt",line);
+      File.AppendAllText("./CLIPixelEngine/Log/log_" + fCount + ".txt", line);
     }
   }
 }

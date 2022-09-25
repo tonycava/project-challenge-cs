@@ -3,32 +3,32 @@ using CLIPixelEngine.Engine.Generic;
 
 namespace Game.Test
 {
-  public class Character : Enemy.EnemyStats
-  {
-    public int _damage = 15;
-    public int _life = 50;
-
-    public int Damage
+  public class Character : LivingEntity
+  { 
+    public Character()
     {
-      get { return _damage; }
+      damage = 10;
+      life = 50;
+    }
+    
+    public Character(Vector2Int position, string path) : base(position, path)
+    {
+      damage = 10;
+      life = 50;
     }
 
-    public int Life
+    public override void DealDamage(int enemyAttack, LivingEntity currentEntity, LivingEntity Attacker)
     {
-      get { return _life; }
-      set { _life = value; }
-    }
-
-    public void DealDamage(int enemyAttack, Entity entity)
-    {
-      Engine.logger.Log("here");
-
-      _life -= enemyAttack;
-      if (_life <= 0)
+      life -= enemyAttack;
+      if (life <= 0)
       {
-        Engine.logger.Log("char");
-        Engine.entities["enemy"].Remove(entity);
+        Engine.entities["enemy"].Remove(currentEntity);
       }
+    }
+    
+    public override void Attack(LivingEntity currentEntity, LivingEntity Attacker)
+    {
+      Attacker.DealDamage(damage, Attacker, currentEntity);
     }
   }
 }

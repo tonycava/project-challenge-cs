@@ -108,20 +108,33 @@ namespace CLIPixelEngine.Engine
         {
           Vector2Int newPos = new Vector2Int(character.Position.x + move.x, character.Position.y + move.y);
           double distanceToEntity2 = Calc.DistanceToBox(newPos, entity.Position,new Vector2Int(4,4));
-          
           if (distanceToEntity2 <= 0)
           {
-
-            character.Script.DealDamage(character.Script.Damage, character);
-            entity.Script.DealDamage(Engine.entities["player"][0].Script.Damage, entity);
+            if (((entity as LivingEntity) != null))
+            {
+              LivingEntity livingEntity = (LivingEntity) entity;
+              Character livingCharacter = (Character)character;
+              livingEntity.DealDamage(livingCharacter.damage, livingEntity, livingCharacter);       
             
-            Console.WriteLine($"You hit the blubble and the monster hit you and you now have {character.Script.Life} HP");
-            Console.WriteLine("If you want to fight continue in the direction of the monster");
-            Console.WriteLine("Otherwise leave in the opposite direction ");
-            Thread.Sleep(2000);
+              Console.WriteLine($"You hit the blubble and the monster hit you and you now have {livingCharacter.life} HP");
+              Console.WriteLine("If you want to fight continue in the direction of the monster");
+              Console.WriteLine("Otherwise leave in the opposite direction ");
+              Console.Write($"Current Entity Life {livingEntity.life}");
+              Thread.Sleep(2000);
+              return entity;
+            }
+            else if  (((entity as EquipementEntity) != null))
+            {
+              EquipementEntity equipementEntity = (EquipementEntity) entity;
+              Character livingCharacter = (Character)character;
+            
+              Console.WriteLine($"You just took the item {equipementEntity.equipment.name}");
+              livingCharacter.inventory.Add(equipementEntity.equipment);
+              Engine.entities["items"].Remove(equipementEntity);
+              Thread.Sleep(2000);
+              return equipementEntity;
+            }
             // Console.WriteLine("Or use an heal potion using the key U !");
-
-            return entity;
           }
           
           Engine.logger.Log("" + distanceToEntity2 + "\n");

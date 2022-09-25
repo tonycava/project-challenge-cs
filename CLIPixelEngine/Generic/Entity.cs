@@ -10,9 +10,7 @@ namespace CLIPixelEngine.Engine.Generic
 
     public int Rotation;
     public bool invertX = false;
-
-    public Enemy.EnemyStats Script;
-
+    
     public Entity()
     {
       Position = new Vector2Int(0, 0);
@@ -20,12 +18,11 @@ namespace CLIPixelEngine.Engine.Generic
       Rotation = 0;
     }
 
-    public Entity(Vector2Int position, string path, Enemy.EnemyStats script)
+    public Entity(Vector2Int position, string path)
     {
       Position = new Vector2Int(position.x, position.y);
       Sprite = new Bitmap("./Assets/Sprites/" + path);
       Rotation = 0;
-      Script = script;
     }
   }
 }

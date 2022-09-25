@@ -4,15 +4,15 @@ namespace Game.EntityHandler.Items.Weapons;
 
 public class Dagger : Equipment
 {
-    public Bitmap sprite
-    {
-        get { return new Bitmap("./Assets/Items/Weapons/Dagger.png"); }
-    }
-    public int damage_bonus { get {return 5;} }
-    public int defense_bonus { get {return 0;} }
-
-    public Dagger()
-    {
-
-    }
+  public Dagger()
+  {
+    sprite = new Bitmap("./Assets/Items/Weapons/Dagger.png");
+    damage_bonus = 5;
+    defense_bonus = 0;
+  }
+    
+  public override object Clone()
+  {
+    return new Dagger();
+  }
 }

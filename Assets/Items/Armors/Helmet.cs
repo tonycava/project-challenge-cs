@@ -4,15 +4,15 @@ namespace Game.EntityHandler.Items.Armors;
 
 public class Helmet : Equipment
 {
-    public Bitmap sprite
-    {
-        get { return new Bitmap("./Assets/Items/Armors/Helmet.png"); }
-    }
-    public int damage_bonus { get {return 5;} }
-    public int defense_bonus { get {return 5;} }
-
-    public Helmet()
-    {
-
-    }
+  public Helmet()
+  {
+    sprite = new Bitmap("./Assets/Items/Armors/Helmet.png");
+    damage_bonus = 5;
+    defense_bonus = 5;
+  }
+    
+  public override object Clone()
+  {
+    return new Helmet();
+  }
 }

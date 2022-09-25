@@ -34,7 +34,7 @@ namespace CLIPixelEngine.Engine
             Engine.logger.Log("can move up\n");
 
             Entity? entity =
-              Engine.logicEngine.CollideWithType(Engine.entities["player"][0], new List<string>() {"enemy"}, 0, 2);
+              Engine.logicEngine.CollideWithType(Engine.entities["player"][0], new List<string>() {"enemy", "items"}, 0, 2);
 
             if (entity == null)
             {
@@ -44,13 +44,12 @@ namespace CLIPixelEngine.Engine
           }
 
           break;
-
         case "D":
           Engine.logger.Log("Key D was pressed\n");
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 1, 2))
           {
             if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
-                  , new List<string>() {"enemy"}, 2, 2) == null)
+                  , new List<string>() {"enemy", "items"}, 2, 2) == null)
             {
               Engine.entities["player"][0].Position.x += 2;
               Engine.entities["player"][0].Rotation = 1;
@@ -64,7 +63,7 @@ namespace CLIPixelEngine.Engine
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 2, 2))
           {
             if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
-                  , new List<string>() {"enemy"}, 2, 2) == null)
+                  , new List<string>() {"enemy", "items"}, 2, 2) == null)
             {
               Engine.logger.Log("TOUCHINGGGGGGGGGGGGGGGGGGGGG");
               Engine.entities["player"][0].Position.y += 2;
@@ -79,7 +78,7 @@ namespace CLIPixelEngine.Engine
           if (Engine.logicEngine.TryMove(Engine.entities["player"][0], 3, 2))
           {
             if (Engine.logicEngine.CollideWithType(Engine.entities["player"][0]
-                  , new List<string>() {"enemy"}, 3, 2) == null)
+                  , new List<string>() {"enemy", "items"}, 3, 2) == null)
             {
               Engine.entities["player"][0].Position.x -= 2;
               Engine.entities["player"][0].Rotation = 3;
