@@ -58,10 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CLIPixelEngine\Log" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Assets\Maps\BigDebugMap\collision.png" />
   </ItemGroup>
 

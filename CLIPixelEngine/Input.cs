@@ -5,7 +5,6 @@ using CLIPixelEngine.Engine.Generic;
 
 namespace CLIPixelEngine.Engine
 {
-  
   public class Input
   {
     public async static void Start()
@@ -31,7 +30,15 @@ namespace CLIPixelEngine.Engine
           case ConsoleKey.E:
             Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "E");
             break;
+          case ConsoleKey.Enter:
+            if (Engine.activeOverlays.Contains("main menu"))
+            {
+              Engine.activeOverlays.Remove("main menu");
+              Engine.renderer.Draw();
+            }
+            break;
         }
+        
       } while (keyinfo.Key != ConsoleKey.Escape);
     }
   }

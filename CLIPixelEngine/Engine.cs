@@ -36,25 +36,23 @@ namespace CLIPixelEngine.Engine
 
       overlays["main menu"] = new Overlay("main menu", "./Assets/Scene/StartMenu.png");
       overlays["inventory"] = new Overlay("inventory", "./Assets/Items/Inventory.png");
+      
       camera.Fov = new Vector2Int(20, 42);
+      
       renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
+      
       renderer.PutCameraAt(new Vector2Int(64, 64));
 
-      entities["player"] = new List<Entity>();
-      entities["enemy"] = new List<Entity>();
+      entities["player"] = new List<Entity> {new Character(new Vector2Int(64, 64), "purple_warrior.png")};
+      entities["enemy"] = new List<Entity> {new Blubble(new Vector2Int(64, 100), "Blubble.png")};
       entities["items"] = new List<Entity>();
 
       activeOverlays.Add("main menu");
-
-      entities["player"].Add(new Character(new Vector2Int(64, 64), "purple_warrior.png"));
-      entities["enemy"].Add(new Blubble(new Vector2Int(64, 100), "Blubble.png"));
       
       Console.Clear();
       
+      
       renderer.Draw();
-      
-      Console.Write(((LivingEntity)entities["player"][0]).life);
-      
       Input.Start();
     }
   }

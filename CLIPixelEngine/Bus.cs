@@ -26,7 +26,6 @@ namespace CLIPixelEngine.Engine.Bus
 
   public class MessageBus
   {
-    //TODO: Fill with enum
 
     public Queue<Message> Mqueue = new Queue<Message>();
 

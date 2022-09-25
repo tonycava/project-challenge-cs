@@ -50,7 +50,7 @@ namespace CLIPixelEngine.Engine
     /// </summary>
     /// <param name="pathToMap">the name of the map directory</param>
     /// <returns>return the bitmap of the map</returns>
-    static Bitmap GetMap(string pathToMap) => new Bitmap(pathToMap);
+    private Bitmap GetMap(string pathToMap) => new Bitmap(pathToMap);
 
     /// <summary>
     /// Select the map to use
@@ -103,12 +103,11 @@ namespace CLIPixelEngine.Engine
       _endAtY = _startAtY == 0 ? _startAtY + Engine.camera.Fov.y * 2 : _endAtY;
 
       DrawOverlay(Map, _startAtX, _startAtY);
-      
+
       for (int y = _startAtX; y < _endAtX; y++)
       {
         for (int x = _startAtY; x < _endAtY; x++)
         {
-
           byte r = Map.GetPixel(x, y).R;
           byte g = Map.GetPixel(x, y).G;
           byte b = Map.GetPixel(x, y).B;
@@ -127,7 +126,7 @@ namespace CLIPixelEngine.Engine
     /// Draw all entities that are present in the Engine.entities list
     /// </summary>
     /// <param name="Map">the current map</param>
-    public void DrawEntities(Bitmap map)
+    private void DrawEntities(Bitmap map)
     {
       foreach (var list in Engine.entities)
       {
@@ -143,7 +142,7 @@ namespace CLIPixelEngine.Engine
     /// </summary>
     /// <param name="map">current map</param>
     /// <param name="entity">the entity to draw</param>
-    public void DrawEntity(Bitmap map, Entity entity)
+    private void DrawEntity(Bitmap map, Entity entity)
     {
       for (int x = 0; x < 8; x++)
       {
@@ -176,12 +175,11 @@ namespace CLIPixelEngine.Engine
     /// <param name="map">the current map</param>
     /// <param name="startX">start of the camera x position</param>
     /// <param name="startY">start of the camera y position</param>
-    public void DrawOverlay(Bitmap map, int startX, int startY)
+    private void DrawOverlay(Bitmap map, int startX, int startY)
     {
-      Bitmap overlay;
       foreach (var overlayName in Engine.activeOverlays)
       {
-        overlay = Engine.overlays[overlayName].Image;
+        Bitmap overlay = Engine.overlays[overlayName].Image;
         for (int y = 0; y < Engine.camera.Fov.x * 2; y++)
         {
           for (int x = 0; x < Engine.camera.Fov.y * 2; x++)
