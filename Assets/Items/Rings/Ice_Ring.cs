@@ -14,6 +14,8 @@ public class IceRing : Equipment
     
   public override object Clone()
   {
+    IceRing bow = new IceRing();
+    bow.id = id;
     return new IceRing();
   }
 }

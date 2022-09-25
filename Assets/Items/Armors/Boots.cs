@@ -6,12 +6,15 @@ public class Boots : Equipment
 {
   public Boots()
   {
+    name = "Boots";
     sprite = new Bitmap("./Assets/Items/Armors/Boots.png");
     damage_bonus = 5;
     defense_bonus = 5;
   }
   public override object Clone()
   {
+    Boots bow = new Boots();
+    bow.id = id;
     return new Boots();
   }
 }

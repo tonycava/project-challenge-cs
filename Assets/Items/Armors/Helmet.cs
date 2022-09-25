@@ -6,6 +6,7 @@ public class Helmet : Equipment
 {
   public Helmet()
   {
+    name = "Helmet";
     sprite = new Bitmap("./Assets/Items/Armors/Helmet.png");
     damage_bonus = 5;
     defense_bonus = 5;
@@ -13,6 +14,8 @@ public class Helmet : Equipment
     
   public override object Clone()
   {
+    Helmet bow = new Helmet();
+    bow.id = id;
     return new Helmet();
   }
 }

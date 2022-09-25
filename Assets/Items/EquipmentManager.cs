@@ -1,4 +1,5 @@
-﻿using Game.EntityHandler.Items.Armors;
+﻿using CLIPixelEngine.Engine;
+using Game.EntityHandler.Items.Armors;
 using Game.EntityHandler.Items.Rings;
 using Game.EntityHandler.Items.Weapons;
 
@@ -31,7 +32,7 @@ public class EquipmentManager
     
     Register(id++, new Helmet());
     Register(id++, new Chestplate());
-    Register(id++, new Leggins());
+    Register(id++, new Leggings());
     Register(id++, new Boots());
   }
 

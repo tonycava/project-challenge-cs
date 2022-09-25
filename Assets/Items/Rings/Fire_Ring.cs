@@ -14,6 +14,8 @@ public class FireRing : Equipment
     
   public override object Clone()
   {
+    FireRing bow = new FireRing();
+    bow.id = id;
     return new FireRing();
   }
 }

@@ -2,10 +2,11 @@
 
 namespace Game.EntityHandler.Items.Armors;
 
-public class Leggins : Equipment
+public class Leggings : Equipment
 {
-  public Leggins()
+  public Leggings()
   {
+    name = "Leggings";
     sprite = new Bitmap("./Assets/Items/Armors/Leggins.png");
     damage_bonus = 5;
     defense_bonus = 5;
@@ -13,6 +14,8 @@ public class Leggins : Equipment
     
   public override object Clone()
   {
-    return new Leggins();
+    Leggings bow = new Leggings();
+    bow.id = id;
+    return new Leggings();
   }
 }

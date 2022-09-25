@@ -199,13 +199,14 @@ namespace CLIPixelEngine.Engine
           Character livingCharacter = (Character) Engine.entities["player"][0];
           if (livingCharacter.inventory.Count == 0) continue;
 
-          Engine.logger.Log("\n" + string.Join("==>", livingCharacter.inventory + "\n inv"));
-
           int numberOfRingAlreadyDraw = 0;
 
 
           foreach (var item in livingCharacter.inventory)
           {
+            Engine.logger.Log(item.name);
+            Engine.logger.Log(item.id.ToString());
+            
             if (item.name.Contains("Ring")) numberOfRingAlreadyDraw += 1;
             DrawItemInInventory(item, overlay, numberOfRingAlreadyDraw);
           }
@@ -217,16 +218,16 @@ namespace CLIPixelEngine.Engine
     {
       Dictionary<uint, int[]> posInInventory = new Dictionary<uint, int[]>
       {
-        {2, new[] {12, 12}},
-        {3, new[] {12, 12}},
+        {3, new[] {36, 5}},
         {4, new[] {12, 12}},
         {5, new[] {12, 12}},
         {6, new[] {12, 12}},
-
         {7, new[] {12, 12}},
+
         {8, new[] {12, 12}},
         {9, new[] {12, 12}},
         {10, new[] {12, 12}},
+        {11, new[] {12, 12}},
       };
 
       Bitmap ring = equipment.sprite;
