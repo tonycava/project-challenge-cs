@@ -218,20 +218,22 @@ namespace CLIPixelEngine.Engine
     {
       Dictionary<uint, int[]> posInInventory = new Dictionary<uint, int[]>
       {
-        {3, new[] {36, 5}},
-        {4, new[] {12, 12}},
-        {5, new[] {12, 12}},
-        {6, new[] {12, 12}},
-        {7, new[] {12, 12}},
+        {2, new[] {14, 33}},
+        {3, new[] {14, 33}},
+        {4, new[] {14, 33}},
+        {5, new[] {14, 33}},
+        {6, new[] {14, 33}},
 
-        {8, new[] {12, 12}},
-        {9, new[] {12, 12}},
-        {10, new[] {12, 12}},
-        {11, new[] {12, 12}},
+        {7, new[] {15, 9}},
+        
+        {8, new[] {14, 14}},
+        
+        {9, new[] {14, 19}},
+        
+        {10, new[] {14, 26}},
       };
 
       Bitmap ring = equipment.sprite;
-      Engine.logger.Log(numberOfRingAlreadyDraw.ToString());
 
       for (int x = 0; x < _sizeOfSprite; x++)
       {

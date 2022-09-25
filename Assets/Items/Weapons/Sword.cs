@@ -14,8 +14,8 @@ public class Sword : Equipment
     
   public override object Clone()
   {
-    Sword bow = new Sword();
-    bow.id = id;
-    return new Sword();
+    Sword sword = new Sword();
+    sword.id = id;
+    return sword;
   }
 }

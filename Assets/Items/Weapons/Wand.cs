@@ -14,8 +14,8 @@ public class Wand : Equipment
 
   public override object Clone()
   {
-    Wand bow = new Wand();
-    bow.id = id;
-    return new Wand();
+    Wand wand = new Wand();
+    wand.id = id;
+    return wand;
   }
 }

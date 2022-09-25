@@ -14,8 +14,8 @@ public class Spear : Equipment
     
   public override object Clone()
   {
-    Spear bow = new Spear();
-    bow.id = id;
-    return new Spear();
+    Spear spear = new Spear();
+    spear.id = id;
+    return spear;
   }
 }

@@ -50,12 +50,8 @@ namespace CLIPixelEngine.Engine
       activeOverlays.Add("main menu");
 
       Character livingCharacter = (Character) entities["player"][0];
-      
-      livingCharacter.inventory.Add((Equipment) EquipmentManager.singleton.getEquipment(2).Clone());
-      // livingCharacter.inventory.Add((Equipment) EquipmentManager.singleton.getEquipment(4).Clone());
 
       Console.Clear();
-
 
       renderer.Draw();
       Input.Start();

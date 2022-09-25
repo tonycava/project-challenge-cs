@@ -14,8 +14,8 @@ public class Leggings : Equipment
     
   public override object Clone()
   {
-    Leggings bow = new Leggings();
-    bow.id = id;
-    return new Leggings();
+    Leggings leggings = new Leggings();
+    leggings.id = id;
+    return leggings;
   }
 }

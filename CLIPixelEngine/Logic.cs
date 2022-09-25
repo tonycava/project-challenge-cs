@@ -135,8 +135,17 @@ namespace CLIPixelEngine.Engine
               Character livingCharacter = (Character) character;
 
               Console.WriteLine($"You just took the item {equipementEntity.equipment.name}");
-              livingCharacter.inventory.Add(equipementEntity.equipment);
-              Engine.entities["items"].Remove(equipementEntity);
+
+              if (livingCharacter.inventory.Count == 1)
+              {
+                Console.WriteLine("Sorry your inventory is you can not pick up this item");
+              }
+              else
+              {
+                livingCharacter.inventory.Add(equipementEntity.equipment);
+                Engine.entities["items"].Remove(equipementEntity);   
+              }
+              
               Thread.Sleep(2000);
               return equipementEntity;
             }

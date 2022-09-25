@@ -13,8 +13,8 @@ public class Boots : Equipment
   }
   public override object Clone()
   {
-    Boots bow = new Boots();
-    bow.id = id;
-    return new Boots();
+    Boots boots = new Boots();
+    boots.id = id;
+    return boots;
   }
 }

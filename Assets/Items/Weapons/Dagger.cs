@@ -14,8 +14,8 @@ public class Dagger : Equipment
     
   public override object Clone()
   {
-    Dagger bow = new Dagger();
-    bow.id = id;
-    return new Dagger();
+    Dagger dagger = new Dagger();
+    dagger.id = id;
+    return dagger;
   }
 }

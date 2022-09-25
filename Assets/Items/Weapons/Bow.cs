@@ -6,7 +6,6 @@ public class Bow : Equipment
 {
   public Bow()
   {
-    id = 3;
     name = "Bow";
     sprite = new Bitmap("./Assets/Items/Weapons/Bow.png");
     damage_bonus = 5;
@@ -17,6 +16,6 @@ public class Bow : Equipment
   {
     Bow bow = new Bow();
     bow.id = id;
-    return new Bow();
+    return bow;
   }
 }

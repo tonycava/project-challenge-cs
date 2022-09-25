@@ -14,8 +14,8 @@ public class Helmet : Equipment
     
   public override object Clone()
   {
-    Helmet bow = new Helmet();
-    bow.id = id;
-    return new Helmet();
+    Helmet helmet = new Helmet();
+    helmet.id = id;
+    return helmet;
   }
 }
