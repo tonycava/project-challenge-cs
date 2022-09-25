@@ -86,6 +86,19 @@ namespace CLIPixelEngine.Engine
           }
 
           break;
+
+        case "E":
+          Engine.logger.Log("Key E was pressed\n");
+          if (Engine.activeOverlays.Contains("inventory") == true)
+          {
+            Engine.activeOverlays.Remove("inventory");
+          }
+          else
+          {
+            Engine.activeOverlays.Add("inventory");
+          }
+
+          break;
       }
     }
 

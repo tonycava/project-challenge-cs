@@ -28,6 +28,9 @@ namespace CLIPixelEngine.Engine
           case ConsoleKey.Q:
             Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "Q");
             break;
+          case ConsoleKey.E:
+            Engine.bus.AddMessage(ActionType.INPUT, Actions.BUTTON_PRESS, "E");
+            break;
         }
       } while (keyinfo.Key != ConsoleKey.Escape);
     }

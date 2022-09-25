@@ -35,6 +35,7 @@ namespace CLIPixelEngine.Engine
       new EquipmentManager();
 
       overlays["main menu"] = new Overlay("main menu", "./Assets/Scene/StartMenu.png");
+      overlays["inventory"] = new Overlay("inventory", "./Assets/Items/Inventory.png");
       camera.Fov = new Vector2Int(20, 42);
       renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
       renderer.PutCameraAt(new Vector2Int(64, 64));
