@@ -17,6 +17,7 @@ public abstract class LivingEntity : Entity
   public int damage { get; set; }
     
   public List<Equipment> inventory { get; set; }
+  
 
   public abstract void DealDamage(int enemyAttack, LivingEntity currentEntity, LivingEntity attacker);
   public abstract void Attack(LivingEntity currentEntity, LivingEntity attacker);

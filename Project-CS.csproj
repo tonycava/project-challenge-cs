@@ -43,6 +43,14 @@
     <None Remove="Assets\Scene\startGame.png" />
     <None Remove="Assets\Scene\New Piskel.png" />
     <EmbeddedResource Remove="Log\**" />
+    <None Remove="Assets\Sprites\Inventory.png" />
+    <AdditionalFiles Include="Assets\Sprites\Inventory.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <None Remove="Assets\Items\Rings\Ice_ring.png" />
+    <AdditionalFiles Include="Assets\Items\Rings\Ice_ring.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
 
   <ItemGroup>

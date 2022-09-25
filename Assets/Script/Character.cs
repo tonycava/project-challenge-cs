@@ -1,16 +1,17 @@
 ﻿using CLIPixelEngine.Engine;
 using CLIPixelEngine.Engine.Generic;
+using Game.EntityHandler.Items;
 
 namespace Game.Test
 {
   public class Character : LivingEntity
-  { 
+  {
     public Character()
     {
       damage = 10;
       life = 50;
     }
-    
+
     public Character(Vector2Int position, string path) : base(position, path)
     {
       damage = 10;
@@ -25,7 +26,7 @@ namespace Game.Test
         Engine.entities["enemy"].Remove(currentEntity);
       }
     }
-    
+
     public override void Attack(LivingEntity currentEntity, LivingEntity Attacker)
     {
       Attacker.DealDamage(damage, Attacker, currentEntity);

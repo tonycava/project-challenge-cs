@@ -106,7 +106,7 @@ namespace CLIPixelEngine.Engine
           double distanceToEntity2 = Calc.DistanceToBox(newPos, entity.Position, new Vector2Int(4, 4));
           if (distanceToEntity2 <= 0)
           {
-            if (((entity as LivingEntity) != null))
+            if (entity as LivingEntity != null)
             {
               LivingEntity livingEntity = (LivingEntity) entity;
               Character livingCharacter = (Character) character;
@@ -129,7 +129,7 @@ namespace CLIPixelEngine.Engine
               Thread.Sleep(2000);
               return entity;
             }
-            else if (((entity as EquipementEntity) != null))
+            else if (entity as EquipementEntity != null)
             {
               EquipementEntity equipementEntity = (EquipementEntity) entity;
               Character livingCharacter = (Character) character;

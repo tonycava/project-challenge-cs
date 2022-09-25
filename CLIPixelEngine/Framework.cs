@@ -90,6 +90,8 @@ namespace CLIPixelEngine.Engine
           if (Engine.activeOverlays.Contains("inventory")) Engine.activeOverlays.Remove("inventory");
           else Engine.activeOverlays.Add("inventory");
 
+          Engine.renderer.Draw();
+          
           break;
       }
     }

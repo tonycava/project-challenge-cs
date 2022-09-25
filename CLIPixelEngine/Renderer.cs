@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 using Game.Maps;
+using Game.Test;
 
 namespace CLIPixelEngine.Engine
 {
@@ -188,6 +189,31 @@ namespace CLIPixelEngine.Engine
             if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
             {
               map.SetPixel(startY + x, startX + y, spriteColor);
+            }
+          }
+        }
+
+        if (overlayName == "inventory")
+        {
+          Engine.logger.Log("in inventory");
+          Character livingCharacter = (Character) Engine.entities["player"][0];
+
+          // if (livingCharacter.inventory.Count == 0) continue;
+          // Bitmap ring = livingCharacter.inventory.ElementAt(0).sprite;
+         Bitmap ring = new Bitmap("./Assets/Items/Rings/Ice_ring.png");
+         
+          for (int x = 0; x < 8; x++)
+          {
+            for (int y = 0; y < 8; y++)
+            {
+              Color spriteColor = ring.GetPixel(x, y);
+              
+              if (spriteColor.R != 0 || spriteColor.G != 0 || spriteColor.B != 0)
+              {
+                overlay.SetPixel(24 - 4 + x
+                  , 12 - 4 + y
+                  , spriteColor);
+              }
             }
           }
         }
