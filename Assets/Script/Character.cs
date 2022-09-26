@@ -1,4 +1,5 @@
-﻿using CLIPixelEngine.Engine;
+﻿using System.Diagnostics;
+using CLIPixelEngine.Engine;
 using CLIPixelEngine.Engine.Generic;
 using Game.EntityHandler.Items;
 
@@ -21,10 +22,8 @@ namespace Game.Test
     public override void DealDamage(int enemyAttack, LivingEntity currentEntity, LivingEntity Attacker)
     {
       life -= enemyAttack;
-      if (life <= 0)
-      {
-        Engine.entities["enemy"].Remove(currentEntity);
-      }
+      
+      if (life <= 0) Process.GetCurrentProcess().Kill();
     }
 
     public override void Attack(LivingEntity currentEntity, LivingEntity Attacker)

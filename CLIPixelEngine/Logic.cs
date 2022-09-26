@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Timers;
 using CLIPixelEngine.Engine.Generic;
 using Game.Test;
 
@@ -112,8 +113,7 @@ namespace CLIPixelEngine.Engine
               Character livingCharacter = (Character) character;
               livingEntity.DealDamage(livingCharacter.damage, livingEntity, livingCharacter);
 
-              Console.WriteLine(
-                $"You hit the blubble and the monster hit you and you now have {livingCharacter.life} HP");
+              Console.WriteLine($"You hit the blubble and the monster hit you and you now have {livingCharacter.life} HP");
               Console.WriteLine("If you want to fight continue in the direction of the monster");
               Console.WriteLine("Otherwise leave in the opposite direction ");
 
@@ -143,18 +143,37 @@ namespace CLIPixelEngine.Engine
               else
               {
                 livingCharacter.inventory.Add(equipementEntity.equipment);
-                Engine.entities["items"].Remove(equipementEntity);   
+                Engine.entities["items"].Remove(equipementEntity);
               }
-              
+
               Thread.Sleep(2000);
               return equipementEntity;
             }
-            // Console.WriteLine("Or use an heal potion using the key U !");
           }
         }
       }
 
       return null;
+    }
+
+
+    public void CanSpawnEnemy(Object source, System.Timers.ElapsedEventArgs e)
+    {
+      Random rdm = new Random();
+
+      int x = rdm.Next(2, 128);
+      int y = rdm.Next(2, 128);
+
+      bool canMove = TryMove(new Entity(new Vector2Int(x, y), "Blubble.png"), 2, 2);
+
+      while (!canMove)
+      {
+        x = rdm.Next(2, 128);
+        y = rdm.Next(2, 128);
+        canMove = TryMove(new Entity(new Vector2Int(x, y), "Blubble.png"), 2, 2);
+      }
+
+      Engine.entities["enemy"].Add(new Blubble(new Vector2Int(x, y), "Blubble.png"));
     }
   }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using CLIPixelEngine.Engine.Bus;
@@ -48,13 +49,18 @@ namespace CLIPixelEngine.Engine
       entities["items"] = new List<Entity>();
 
       activeOverlays.Add("main menu");
-
-      Character livingCharacter = (Character) entities["player"][0];
+      
+      var aTimer = new System.Timers.Timer();
+      
+      aTimer.Interval = 20 * 1000;
+      aTimer.Elapsed += logicEngine.CanSpawnEnemy;
+      aTimer.Enabled = true;
 
       Console.Clear();
-
       renderer.Draw();
       Input.Start();
     }
+
+
   }
 }

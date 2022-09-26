@@ -18,7 +18,6 @@ namespace Game.Test
     {
       damage = 10;
       life = 30;
-      Console.WriteLine(EquipmentManager.singleton == null);
       inventory.Add((Equipment)EquipmentManager.singleton.getEquipment(1).Clone());
     }
     
