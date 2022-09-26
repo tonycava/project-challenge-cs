@@ -6,6 +6,7 @@ namespace Game.EntityHandler.Items;
 public class DropedItem : Entity
 {
   public Equipment item;
+
   public DropedItem(Equipment equipment)
   {
     item = equipment;

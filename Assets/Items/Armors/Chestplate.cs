@@ -14,7 +14,7 @@ public class Chestplate : Equipment
 
   public override object Clone()
   {
-    Chestplate chestplate = new Chestplate();
+    var chestplate = new Chestplate();
     chestplate.id = id;
     return chestplate;
   }

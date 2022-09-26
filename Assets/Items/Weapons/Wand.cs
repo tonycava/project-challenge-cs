@@ -14,7 +14,7 @@ public class Wand : Equipment
 
   public override object Clone()
   {
-    Wand wand = new Wand();
+    var wand = new Wand();
     wand.id = id;
     return wand;
   }

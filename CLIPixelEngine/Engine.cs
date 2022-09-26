@@ -1,66 +1,58 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using CLIPixelEngine.Engine.Bus;
 using CLIPixelEngine.Engine.Generic;
 using Game.EntityHandler.Items;
 using Game.Maps;
 using Game.Test;
+using Timer = System.Timers.Timer;
 
+namespace CLIPixelEngine.Engine;
 
-namespace CLIPixelEngine.Engine
+public class Engine
 {
-  public class Engine
+  public static MessageBus bus = new();
+  public static Dictionary<string, List<Entity>> entities = new();
+  public static Dictionary<string, Overlay> overlays = new();
+  public static List<string> activeOverlays = new();
+  public static Renderer renderer = new();
+  public static Camera camera = new();
+  public static Logic logicEngine = new();
+  public static MessageLinker messageLinker = new();
+  public static MessageReceiver messageReceiver = new();
+  public static Logger logger = new();
+
+
+  /// <summary>
+  ///   start the engine and contained the required setup to start the game
+  /// </summary>
+  public static void StartEngine()
   {
-    public static MessageBus bus = new MessageBus();
-    public static Dictionary<string, List<Entity>> entities = new Dictionary<string, List<Entity>>();
-    public static Dictionary<string, Overlay> overlays = new Dictionary<string, Overlay>();
-    public static List<string> activeOverlays = new List<string>();
-    public static Renderer renderer = new Renderer();
-    public static Camera camera = new Camera();
-    public static Logic logicEngine = new Logic();
-    public static MessageLinker messageLinker = new MessageLinker();
-    public static MessageReceiver messageReceiver = new MessageReceiver();
-    public static Logger logger = new Logger();
+    //setup
+    logger.CreateLogFile();
+    new EquipmentManager();
 
+    overlays["main menu"] = new Overlay("main menu", "./Assets/Scene/StartMenu.png");
+    overlays["inventory"] = new Overlay("inventory", "./Assets/Sprites/Inventory.png");
 
-    /// <summary>
-    /// start the engine and contained the required setup to start the game
-    /// </summary>
-    public static void StartEngine()
-    {
-      //setup
-      logger.CreateLogFile();
-      new EquipmentManager();
+    camera.Fov = new Vector2Int(20, 42);
 
-      overlays["main menu"] = new Overlay("main menu", "./Assets/Scene/StartMenu.png");
-      overlays["inventory"] = new Overlay("inventory", "./Assets/Sprites/Inventory.png");
+    renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
 
-      camera.Fov = new Vector2Int(20, 42);
+    renderer.PutCameraAt(new Vector2Int(64, 64));
 
-      renderer.SetMap(MapsHandler.GetMap(MapsHandler.MapKeys.BIG_DEBUG_MAP));
+    entities["player"] = new List<Entity> {new Character(new Vector2Int(64, 64), "purple_warrior.png")};
+    entities["enemy"] = new List<Entity> {new Blubble(new Vector2Int(64, 100), "Blubble.png")};
+    entities["items"] = new List<Entity>();
 
-      renderer.PutCameraAt(new Vector2Int(64, 64));
+    activeOverlays.Add("main menu");
 
-      entities["player"] = new List<Entity> {new Character(new Vector2Int(64, 64), "purple_warrior.png")};
-      entities["enemy"] = new List<Entity> {new Blubble(new Vector2Int(64, 100), "Blubble.png")};
-      entities["items"] = new List<Entity>();
+    var aTimer = new Timer();
 
-      activeOverlays.Add("main menu");
-      
-      var aTimer = new System.Timers.Timer();
-      
-      aTimer.Interval = 20 * 1000;
-      aTimer.Elapsed += logicEngine.CanSpawnEnemy;
-      aTimer.Enabled = true;
+    aTimer.Interval = 20 * 1000;
+    aTimer.Elapsed += logicEngine.CanSpawnEnemy;
+    aTimer.Enabled = true;
 
-      Console.Clear();
-      renderer.Draw();
-      Input.Start();
-    }
-
-
+    Console.Clear();
+    renderer.Draw();
+    Input.Start();
   }
 }

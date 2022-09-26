@@ -11,10 +11,10 @@ public class Bow : Equipment
     damage_bonus = 5;
     defense_bonus = 0;
   }
-    
+
   public override object Clone()
   {
-    Bow bow = new Bow();
+    var bow = new Bow();
     bow.id = id;
     return bow;
   }

@@ -11,10 +11,10 @@ public class Sword : Equipment
     damage_bonus = 5;
     defense_bonus = 0;
   }
-    
+
   public override object Clone()
   {
-    Sword sword = new Sword();
+    var sword = new Sword();
     sword.id = id;
     return sword;
   }

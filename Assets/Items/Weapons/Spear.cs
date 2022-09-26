@@ -11,10 +11,10 @@ public class Spear : Equipment
     damage_bonus = 5;
     defense_bonus = 0;
   }
-    
+
   public override object Clone()
   {
-    Spear spear = new Spear();
+    var spear = new Spear();
     spear.id = id;
     return spear;
   }

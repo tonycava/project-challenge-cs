@@ -11,9 +11,10 @@ public class Boots : Equipment
     damage_bonus = 5;
     defense_bonus = 5;
   }
+
   public override object Clone()
   {
-    Boots boots = new Boots();
+    var boots = new Boots();
     boots.id = id;
     return boots;
   }

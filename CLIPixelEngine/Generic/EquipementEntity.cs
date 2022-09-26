@@ -5,9 +5,10 @@ namespace CLIPixelEngine.Engine.Generic;
 public class EquipementEntity : Entity
 {
   public Equipment equipment;
-  public EquipementEntity(Equipment equipment) : base()
+
+  public EquipementEntity(Equipment equipment)
   {
     this.equipment = equipment;
-    this.Sprite = equipment.sprite;
+    Sprite = equipment.sprite;
   }
 }

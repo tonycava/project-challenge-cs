@@ -11,10 +11,10 @@ public class Dagger : Equipment
     damage_bonus = 5;
     defense_bonus = 0;
   }
-    
+
   public override object Clone()
   {
-    Dagger dagger = new Dagger();
+    var dagger = new Dagger();
     dagger.id = id;
     return dagger;
   }

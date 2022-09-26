@@ -11,10 +11,10 @@ public class FireRing : Equipment
     damage_bonus = 5;
     defense_bonus = 5;
   }
-    
+
   public override object Clone()
   {
-    FireRing fireRing = new FireRing();
+    var fireRing = new FireRing();
     fireRing.id = id;
     return fireRing;
   }

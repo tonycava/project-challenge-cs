@@ -11,10 +11,10 @@ public class IceRing : Equipment
     damage_bonus = 5;
     defense_bonus = 5;
   }
-    
+
   public override object Clone()
   {
-    IceRing iceRing = new IceRing();
+    var iceRing = new IceRing();
     iceRing.id = id;
     return iceRing;
   }

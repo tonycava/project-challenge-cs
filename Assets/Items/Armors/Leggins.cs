@@ -11,10 +11,10 @@ public class Leggings : Equipment
     damage_bonus = 5;
     defense_bonus = 5;
   }
-    
+
   public override object Clone()
   {
-    Leggings leggings = new Leggings();
+    var leggings = new Leggings();
     leggings.id = id;
     return leggings;
   }

@@ -11,10 +11,10 @@ public class Helmet : Equipment
     damage_bonus = 5;
     defense_bonus = 5;
   }
-    
+
   public override object Clone()
   {
-    Helmet helmet = new Helmet();
+    var helmet = new Helmet();
     helmet.id = id;
     return helmet;
   }
