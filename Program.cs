@@ -1,13 +1,11 @@
-using Game.Engine;
-using CLIpixelEngine.Engine.Generic;
+using CLIPixelEngine.Engine;
 
-namespace Project_CS
+namespace Project_CS;
+
+public class Program
 {
-    public class Program 
-    {
-        public static void Main()
-        {
-            Board.DisplayGame();
-        }
-    }
+  public static void Main()
+  {
+    Engine.StartEngine();
+  }
 }

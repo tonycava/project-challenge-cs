@@ -1,26 +1,72 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Project_CS</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Project_CS</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Assets\Entity\Vilain.cs" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Assets\Entity\Vilain.cs"/>
+        <Compile Remove="Log\**"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0-rc.1.22426.10" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" Version="7.0.0-rc.1.22426.10"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\map.png" />
-    <AdditionalFiles Include="Assets\map.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Assets\map.png"/>
+        <None Remove="Log\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Assets\Maps\DebugMap\DebugMap.png"/>
+        <None Remove="Assets\Sprites\purple_mage.png"/>
+        <AdditionalFiles Include="Assets\Sprites\Blubble.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AdditionalFiles>
+        <AdditionalFiles Include="Assets\Sprites\purple_mage.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AdditionalFiles>
+        <None Remove="Assets\Sprites\purple_warrior.png"/>
+        <EmbeddedResource Include="Assets\Sprites\purple_warrior.png"/>
+        <None Remove="Assets\Maps\BigDebugMap\BigDebugMap.png"/>
+        <None Remove="Assets\Maps\BigDebugMap\map.png"/>
+        <AdditionalFiles Include="Assets\Maps\BigDebugMap\map.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AdditionalFiles>
+        <None Remove="Assets\Maps\BigDebugMap\collision.png"/>
+        <None Remove="Assets\Sprites\Blubble.png"/>
+        <None Remove="Assets\Scene\startGame.png"/>
+        <None Remove="Assets\Scene\New Piskel.png"/>
+        <EmbeddedResource Remove="Log\**"/>
+        <None Remove="Assets\Sprites\Inventory.png"/>
+        <AdditionalFiles Include="Assets\Sprites\Inventory.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AdditionalFiles>
+        <None Remove="Assets\Items\Rings\Ice_ring.png"/>
+        <AdditionalFiles Include="Assets\Items\Rings\Ice_ring.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AdditionalFiles>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" Version="7.0.0-rc.1.22426.10"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Assets\map.png"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Assets\Maps\BigDebugMap\collision.png"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Assets\Maps\BigDebugMap\collision.png"/>
+    </ItemGroup>
 
 </Project>
